@@ -28,7 +28,7 @@ class _FlightOffersScreenState extends State<FlightOffersScreen> {
     // API'den veri çekme işlemi burada
     String accessToken = await getAccessToken();
     final String apiUrl =
-        "https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=$kalkis&destinationLocationCode=$inis&departureDate=2024-04-20&adults=1&max=5";
+        "https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=$kalkis&destinationLocationCode=$inis&departureDate=2024-09-20&adults=1&max=5";
 
     final response = await http.get(
       Uri.parse(apiUrl),

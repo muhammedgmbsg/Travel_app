@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
 import 'package:travel_app/HomePage.dart';
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       
       home: Scaffold(appBar: AppBar(title: Text('Seyahat Uygulaması',style: TextStyle(color: Colors.white),),backgroundColor: Colors.blue,)
       ,
-      body:  HomePage(),
+      body:  ProviderScope(child: HomePage()),
       )
      
     );

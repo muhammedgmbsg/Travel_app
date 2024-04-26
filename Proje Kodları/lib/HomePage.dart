@@ -1,8 +1,11 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/Data.dart';
+import 'package:travel_app/DetailPage.dart';
 import 'package:travel_app/FlighPage.dart';
+import 'package:travel_app/Provider.dart';
 import 'package:travel_app/main.dart';
 
 
@@ -40,7 +43,7 @@ class _HomePageState extends State<HomePage> {
       builder: (_ , child) {
         return MaterialApp(
       home: Scaffold(
-        backgroundColor: const Color.fromARGB(255, 231, 225, 225),
+        backgroundColor: const Color.fromARGB(255, 255, 253, 253),
         body: Container(
           child: Column(children: [
             Row(
@@ -165,10 +168,11 @@ class _HomePageState extends State<HomePage> {
  //Animasyonlu Cevap Texti
   Container AnswerText() {
     return Container(
+      
               height: 100.h,
               width: 270.w,
               decoration: BoxDecoration(
-                
+                color: const Color.fromARGB(255, 255, 253, 253),
                 border: Border.all(
                   color: Colors.blue
                   
@@ -269,10 +273,10 @@ class _HomePageState extends State<HomePage> {
               scrollDirection: Axis.horizontal,
                child: Row(
                 children: [
-                  Data.popularPlace(place1,img1,width,height),const SizedBox(width: 10,),
-                   Data.popularPlace(place2,img2,width,height),const SizedBox(width: 10,),
-                    Data.popularPlace(place3,img3,width,height),const SizedBox(width: 10,),
-                    Data.popularPlace(place4,img4,width,height),const SizedBox(width: 10,),
+                  popularPlace(place1,img1,width,height),const SizedBox(width: 10,),
+                   popularPlace(place2,img2,width,height),const SizedBox(width: 10,),
+                    popularPlace(place3,img3,width,height),const SizedBox(width: 10,),
+                    popularPlace(place4,img4,width,height),const SizedBox(width: 10,),
                     
                   
                 ],
@@ -282,7 +286,42 @@ class _HomePageState extends State<HomePage> {
   }
 
 
-        
+         Column popularPlace(String placeText,String images,double width,double height) {
+    return Column(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                      width: width,
+                      height: height,
+                      
+                      child:  Consumer(
+          builder: (context, WidgetRef ref, child) {
+            return  InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context) =>DetailPage() ));
+
+                             ref.read(popularTouristicPlace_name.notifier).state = placeText;
+                             ref.read(popularTouristicPlace_imageUrl.notifier).state= images;
+                           debugPrint(ref.watch(popularTouristicPlace_name));
+                           debugPrint(ref.watch(popularTouristicPlace_imageUrl));
+
+                          },
+                          
+                          
+                              child: Container(
+                              
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(12),
+                                  child: Image.asset(images,fit: BoxFit.fitHeight,)),
+                              ),
+                            );}
+                      ),
+                        
+                    ),SizedBox(height: 10,),
+                   Text("$placeText")
+                  ],
+                );
+  }
 
   Container selectCity() {
     return Container(
@@ -293,32 +332,36 @@ class _HomePageState extends State<HomePage> {
                   
                  
                  ),
-                 child: DropdownButtonFormField<String>(
-      value: selectedCity,
-      onChanged: (String? newValue) {
-        setState(() {
-          selectedCity = newValue!;
-          control = true;
-        });
-      },
-      
-      decoration: InputDecoration(
-enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey),borderRadius: BorderRadius.circular(8)),
-          focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.blue),borderRadius: BorderRadius.circular(8)),
-        hintText: 'Şehir Seçin',
-        contentPadding: const EdgeInsets.all(12.0),
-        border: OutlineInputBorder(
-          
-          borderRadius: BorderRadius.circular(8.0),
-        ),
-      ),
-      items: Data.city.map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
-        );
-      }).toList(),
-    ),);
+                 child:  Consumer(
+          builder: (context, WidgetRef ref, child) {
+            return DropdownButtonFormField<String>(
+                         value: selectedCity,
+                         onChanged: (String? newValue) {
+                           setState(() {
+                             selectedCity = newValue!;
+                             control = true;
+                             ref.read(selectedCityProvider.notifier).state = newValue!;
+                           });
+                         },
+                         
+                         decoration: InputDecoration(
+                   enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey),borderRadius: BorderRadius.circular(8)),
+                             focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.blue),borderRadius: BorderRadius.circular(8)),
+                           hintText: 'Şehir Seçin',
+                           contentPadding: const EdgeInsets.all(12.0),
+                           border: OutlineInputBorder(
+                             
+                             borderRadius: BorderRadius.circular(8.0),
+                           ),
+                         ),
+                         items: Data.city.map<DropdownMenuItem<String>>((String value) {
+                           return DropdownMenuItem<String>(
+                             value: value,
+                             child: Text(value),
+                           );
+                         }).toList(),
+                       );}),
+                 );
   }
 
 
