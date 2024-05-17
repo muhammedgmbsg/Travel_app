@@ -43,6 +43,7 @@ class _HomePageState extends State<HomePage> {
       builder: (_ , child) {
         return MaterialApp(
       home: Scaffold(
+        appBar: AppBar(backgroundColor: Colors.blue, title: Text("Seyahat App",style: TextStyle(color: Colors.white,fontWeight: FontWeight.w400),),),
         backgroundColor: const Color.fromARGB(255, 255, 253, 253),
         body: Container(
           child: Column(children: [
@@ -122,7 +123,7 @@ class _HomePageState extends State<HomePage> {
                child: const Text('Popüler Turistik Yerler',style: TextStyle(fontSize: 14,fontWeight: FontWeight.w400,color: Colors.blue),),
              ),
              
-             scrollElements(150,110,"${Data.cityPopularPlaceText['$selectedCity']![0]}","images/galata.png","${Data.cityPopularPlaceText['$selectedCity']![1]}","images/topkapi.jpeg","${Data.cityPopularPlaceText['$selectedCity']![2]}","images/kapadokya.webp","${Data.cityPopularPlaceText['$selectedCity']![3]}","images/kapadokya.webp"),const SizedBox(height: 10,),
+             scrollElements(150,110,"${Data.cityPopularPlaceText['$selectedCity']![0]}","${Data.cityPopularPlacesImg_url['$selectedCity']![0]}","${Data.cityPopularPlaceText['$selectedCity']![1]}","${Data.cityPopularPlacesImg_url['$selectedCity']![1]}","${Data.cityPopularPlaceText['$selectedCity']![2]}","${Data.cityPopularPlacesImg_url['$selectedCity']![2]}","${Data.cityPopularPlaceText['$selectedCity']![3]}","${Data.cityPopularPlacesImg_url['$selectedCity']![3]}"),const SizedBox(height: 10,),
              Padding(
                padding:  EdgeInsets.only(right: 245.w),
                child: const Text('Soru Sor',style: TextStyle(fontSize: 14,fontWeight: FontWeight.w400,color:Colors.blue),),
@@ -136,7 +137,7 @@ class _HomePageState extends State<HomePage> {
                padding: EdgeInsets.only(top: 20,right: 30.w),
                child: AnswerText(),
              ),
-             SizedBox(height: 29.h,)
+             SizedBox(height: 22.h,)
 ,          Center(child: travelCreate()),
              ],
              
@@ -298,12 +299,14 @@ class _HomePageState extends State<HomePage> {
           builder: (context, WidgetRef ref, child) {
             return  InkWell(
                           onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context) =>DetailPage() ));
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context) =>DetailPage(images) ));
+                            debugPrint("xddd"+images);
 
                              ref.read(popularTouristicPlace_name.notifier).state = placeText;
-                             ref.read(popularTouristicPlace_imageUrl.notifier).state= images;
+                          //   ref.read(popularTouristicPlace_imageUrl.notifier).state= images;
                            debugPrint(ref.watch(popularTouristicPlace_name));
                            debugPrint(ref.watch(popularTouristicPlace_imageUrl));
+                           debugPrint("hahah" + images);
 
                           },
                           
@@ -312,7 +315,7 @@ class _HomePageState extends State<HomePage> {
                               
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(12),
-                                  child: Image.asset(images,fit: BoxFit.fitHeight,)),
+                                  child: Image.network(images,fit: BoxFit.fitHeight,)),
                               ),
                             );}
                       ),
@@ -409,7 +412,8 @@ class _HomePageState extends State<HomePage> {
                     const Text('Tarih Seçin:'),
                       Padding(
                 padding: const EdgeInsets.only(left: 20),
-                child: ElevatedButton(
+                child:  Consumer(
+               builder: (context,WidgetRef ref,child) => ElevatedButton(
                   style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(14)
@@ -426,12 +430,15 @@ class _HomePageState extends State<HomePage> {
                     if (pickedDate != null && pickedDate != selectedDate) {
 
                       selectedDate = pickedDate;
+                      //${ref.watch(selectedDateTime)}
+                      ref.read(selectedDateTime.notifier).state = selectedDate.toString().substring(0,10);
+                      debugPrint("hhaha" + ref.watch(selectedDateTime).toString());
 
                     }
                   },
                   child: const Icon(Icons.date_range_rounded,color: Colors.blue,),
                 ),
-              ),
+              ),)
                   ],
                 ),
               ),

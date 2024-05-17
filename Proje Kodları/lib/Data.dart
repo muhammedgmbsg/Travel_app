@@ -421,127 +421,148 @@ static Map<String, List<String>> cityPopularPlaceText = {
 
 
   //Turistik yer resimleri
-  static Map<String, List<Map<String, String>>> cityPopularPlacesImg_url = {
+  static Map<String, List<String>> cityPopularPlacesImg_url = {
    'İstanbul': [
-    {'Galata Kulesi': ''},
-    {'Topkapı Sarayı': ''},
-    {'Ayasofya Camii': ''},
-    {'Yerebatan Sarnıcı': ''}
+    'https://istanbul-tourist-information.com/tr/wp-content/uploads/2022/02/Things-to-do-at-Galata-Tower.jpg',
+    'https://media.timeout.com/images/103729924/750/422/image.jpg',
+    'https://kultur.istanbul/gorsel/2022/04/yerebatan-sarnici-acilis.jpg',
+    'https://image.cnnturk.com/i/cnnturk/75/740x416/60ca0cc7d265a21d34c0e6cf.jpg',
+    
   ],
   'Ankara': [
-    {'Anıtkabir': ''},
-    {'Kocatepe Camii': ''},
-    {'Atatürk Orman Çiftliği': ''},
-    {'Ankara Kalesi': ''}
+    'https://www.grandalfatravel.com/wp-content/uploads/2023/10/anitkabir-mausoleum-mustafa-kemal-ataturk-ankara-1-scaled.jpg',
+     'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/ANKARA_KOCATEPE_CAM%C4%B0%C4%B0.jpg/800px-ANKARA_KOCATEPE_CAM%C4%B0%C4%B0.jpg',
+    'https://www.kulturportali.gov.tr/repoKulturPortali/large/27082014/03f8c7e3-6f07-44f2-b387-98bf863007b4.JPG?format=jpg&quality=50',
+    'https://trthaberstatic.cdn.wp.trt.com.tr/resimler/2078000/ankara-kalesi-2079071.jpg'
   ],
   'İzmir': [
-    {'Saat Kulesi': ''},
-    {'Kadifekale': ''},
-    {'Alsancak': ''},
-    {'Kemeraltı Çarşısı': ''}
+    'https://www.viago.com.tr/dosya/2928/blog/1-1-izmir-saat-kulesi_254.jpeg',
+    'https://www.kulturportali.gov.tr/repoKulturPortali/large/SehirRehberi//GezilecekYer/20171031105000836_Kadifekale,%20I.Hasan%20Bodur.jpg?format=jpg&quality=50',
+    'https://cdn.yerelrehber.com/uploads/2023/63ba61581a816_1673159000.jpeg',
+     'https://i.neredekal.com/i/neredekal/75/585x300/607f5528944bbf46d1dd43f2'
   ],
    'Antalya': [
-    {'Kaleiçi': ''},
-    {'Düden Şelalesi': ''},
-    {'Antalya Müzesi': ''},
-    {'Konyaaltı Plajı': ''}
+    'https://travelinglensphotography.com/wp-content/uploads/2018/08/Kaleici.jpg',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdi8Vsu3tfQWpD0IIdBq1rTb74dmpbRyrRb_KlsDV54Q&s',
+    'https://www.kulturportali.gov.tr/contents/images/%C4%B0mparator%20%C4%B0mparatori%C3%A7eler%20salonu.jpg',
+     'https://www.kulturportali.gov.tr/repoKulturPortali/large/08032013/a97e091a-08f7-4325-a766-13d0e0d4c0ca.JPG?format=jpg&quality=50'
   ],
   'Bursa': [
-    {'Uludağ': ''},
-    {'Bursa Ulu Camii': ''},
-    {'Yeşil Türbe': ''},
-    {'Tophane Saat Kulesi': ''}
+    'https://cdn1.ntv.com.tr/gorsel/BvPDTf5jD0SCLq-VPx2Zsg.jpg?width=952&height=540&mode=both&scale=both',
+    'https://www.kulturportali.gov.tr/contents/images/Bursa%20Ulu%20Camii%20Murat%20%C3%96CAL%20(24).JPG',
+    'https://rehbername.com/UserFiles/Image/images/ekim2020/Ye%C5%9Fil%20T%C3%BCrbe/Ye%C5%9Fil%20T%C3%BCrbe%20D%C4%B1%C5%9Ftan.jpg',
+    'https://www.gotobursa.com.tr/uploads/2021/09/saat-kulesi_large_large.jpg'
   ],
   'Trabzon': [
-    {'Hagia Sophia Museum': ''},
-    {'Trabzon Castle': ''},
-    {'Uzungöl': ''},
-    {'Atatürk Köşkü': ''}
+    'https://image.wmsm.co/6569c247cc423/og-image.webp?quality=80&width=1200&height=630&aspect_ratio=1200%3A630',
+    'https://imturkey.com/userfiles/images/trabzon-kalesi/trabzon-castle.jpg',
+    'https://www.eycetours.com/wp-content/uploads/2020/08/gunubirlik-uzungol-turu.jpg',
+    'https://static.daktilo.com/sites/1262/uploads/2023/11/20/large/trabzonda-ataturk-koskunun-giris-ucreti-tartisma-konusu-oldu-1700481410.jpg'
   ],
   'Adana': [
-    {'Seyhan Barajı': ''},
-    {'Stone Bridge': ''},
-    {'Atatürk Parkı': ''}
+    'https://trthaberstatic.cdn.wp.trt.com.tr/resimler/1834000/adana-seyhan-baraj-golu-iha-1834816.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/c/c2/Stone_Bridge_%28Adana%29.jpg',
+    'https://www.adanadacocukolmak.com/wp-content/uploads/2017/03/merkezpark-500x300.jpg',
+    'https://i.ytimg.com/vi/Gs-J_7EGE7k/maxresdefault.jpg'
   ],
  'Konya': [
-    {'Mevlana Müzesi': ''},
-    {'Konya Karatay Medresesi': ''},
-    {'Aziziye Camii': ''},
-    {'Alaeddin Hill': ''}
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnqteZAsRb8MModCRSzfkOaSSVUJaOojn-1PtQME2GWQ&s',
+  'https://www.ikolsoftware.com/public/resized/high/image_data/original/570572df50d16d10a291454551d3e9b155b7ce4c/590b8baf656b3.jpg',
+    'https://www.yeniasya.com.tr/Sites/YeniAsya/Upload/images/Content/2018/12/01/aziziye111111.jpg',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg60fLrLk31-pUwTieBQgs3ARN9s8D5w1riMSJiLv0Og&s'
   ],
   'Eskişehir': [
-    {'Sazova Park': ''},
-    {'Eskişehir Bilim, Sanat ve Kültür Parkı': ''},
-    {'Odunpazarı Evleri': ''},
-    {'Kent Park': ''}
+    'https://www.anadolugazetesi.com/resimler/id1/sazova-parki-eskisehir--nerede--adresi--telefonu--104320.jpg',
+    'https://gezipgordum.com/wp-content/uploads/2020/03/sazova-parki-gezilecek-yerler.jpg',
+   'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/45/85/15/fotograf-bana-aile-olmasa.jpg?w=1200&h=-1&s=1',
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbXiVbumVoxwmb-dAPCTTqDKOUD6npM74vW2QyefRDSQ&s'
   ],
   'Denizli': [
-    {'Pamukkale': ''},
-    {'Hierapolis Antik Kenti': ''},
-    {'Denizli Teleferik': ''},
-    {'Denizli Çamlık Parkı': ''}
+   'https://www.kulturportali.gov.tr/contents/images/20181218112945723_20170505152407842_360_20170309100951302.jpg',
+   'https://www.kulturportali.gov.tr/contents/images/20181218112846631_20171004140610117_DENIZLI%20KULTUR%20VARLIKLARI%20VE%20MUZELER%20GN_MD_%20(38).jpg',
+    'https://www.denizliteleferik.com.tr/timthumb.php?src=images/yuklenenler/159933d10e7a68.jpg&w=1920&h=850&zc=1',
+    'https://denizli.org/wp-content/uploads/2016/12/camlik-parki.jpg'
   ],
   'Samsun': [
-    {'Amazon Köyü': ''},
-    {'Bandırma Vapuru Müzesi': ""},
-    {'Atatürk Parkı': ''},
-    {'Samsun Sahili': ''}
+    'https://www.kulturportali.gov.tr/repoKulturPortali/large/13032013/7464ed6d-1c65-41ad-834b-49d18c14dc09.JPG?format=jpg&quality=50',
+   "https://www.kulturportali.gov.tr/contents/images/SAMSUN-BANDIRMA%20VAPURU-G%C3%9CLCAN%20ACAR%20(1)(1).jpg",
+    'https://i.neredekal.com/i/neredekal/75/585x300/6063a449d826b7ffcce95d12',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoxOlLSJnncK9Hi0-IYICusx8SjSLwhrtAxNKxYeRdMQ&s'
   ],
   'Kayseri': [
-    {'Kayseri Kalesi': ''},
-    {'Hunat Hatun Camii': ''},
-    {'Cumhuriyet Meydanı': ''},
-    {'Kültür Park': ''}
+    'https://image.milimaj.com/i/milliyet/75/869x477/5f6c84655542831e685ec222.jpg',
+    'https://okuryazarim.com/wp-content/uploads/2017/01/Hunat-Hatun-Genel.jpg',
+   'https://www.kayseri.bel.tr/uploads/kesfet/havadan-kayseri/1/cumhuriyet-meydani-detaylar.jpg',
+  'https://kayseri.bel.tr/uploads/haberler/2024/4/kayseri-cocuk-kitap-fuari-ve-senligi-yogun-ilgi-goruyor-58.jpeg'
   ],
   'Balıkesir': [
-    {'Cunda Adası': ''},
-    {'Ayvalık': ''},
-    {'Bandırma': ''},
-    {'Troya Antik Kenti': ''},],
+   'https://static.baranselgrup.com/nwm-147370-w1920-cunda-adasi-hakkinda-bilinmesi-gerekenler.png',
+    'https://www.villacim.com.tr/uploads/310_ayvalikgezilecekyerler.jpg',
+    'https://blog.biletbayi.com/wp-content/uploads/2020/08/bandirma-balikesir-scaled.jpg',
+   'https://www.kulturportali.gov.tr/contents/images/shutterstock_626443904.jpg?format=jpg&quality=50&width=1200',],
   'Gaziantep': [
-    {'Gaziantep Kalesi': ''},
-    {'Zeugma Mozaik Müzesi': ''},
-    {'Gaziantep Hayvanat Bahçesi': ''},
-    {'Tahtani Camii': ''}
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Gaziantep%2C_Turkey_-_panoramio_%288%29.jpg/1200px-Gaziantep%2C_Turkey_-_panoramio_%288%29.jpg',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGDY6Qjw0ZtTuaAbPIvHAEVcXIHPkNF1ByNP7vgb6VhMEW0yO-7HDpEtayrI3gtt0D8gE&usqp=CAU',
+    'https://cdnuploads.aa.com.tr/uploads/Contents/2020/01/22/thumbs_b_c_9307bf5786ca3ad696421d44498e9384.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Gaziantep_Tahtani_Camii_8409.jpg/1280px-Gaziantep_Tahtani_Camii_8409.jpg'
   ],
   'Diyarbakır': [
-    {'Diyarbakır Surları': ''},
-    {'Dört Ayaklı Minare': ''},
-    {'Hevsel Bahçeleri': ''},
-    {'On Gözlü Köprü': ''}
+    'https://www.kulturportali.gov.tr/contents/images/THK-ORHAN%20%C3%96ZG%C3%9CLBA%C5%9E-D%C4%B0YARBAKIR.jpg?format=jpg&quality=50&width=1200',
+'https://ozgurhabergazetesi.com/wp-content/uploads/2024/02/diyarbakirin-gizemli-simgesi-dort-ayakli-minare-2.webp',
+   'https://image.hurimg.com/i/hurriyet/75/1110x740/5c0e2f09c03c0e14b4633898.jpg',
+   'https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/OnGozluBridge.jpg/1200px-OnGozluBridge.jpg'
   ],
    'Mersin': [
-    {'Mersin Marina': ''},
-    {'Tarsus Ulu Camii': ''},
-    {'Silifke Kalesi': ''},
-    {'Kleopatra Kapısı': ''}
+  'https://www.kulturportali.gov.tr/repoKulturPortali/large/Dokumanlar/MersinMarina1FotografMersinMarina2_20160302132809278.JPG?format=jpg&quality=50',
+    'https://www.kulturportali.gov.tr/repoKulturPortali/large/SehirRehberi//GezilecekYer/20181105145817900_MERSIN%20TARSUS%20TERIHI%20ULUCAMII%20GULCAN%20ACAR%20(3).jpg?format=jpg&quality=50',
+    'https://panel.silifke.bel.tr/Uploads/Content/content_S%C4%B0L%C4%B0FKE_Silifke%20Kalesi_70_3334.Jpeg',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPje_0_WBpuYVB8xjS0AfWCm02SdMdFWyk8GmTu2dmeJhtzNPqIh-avNBQHf7HX4uHUek&usqp=CAU'
   ],
   'Kahramanmaraş': [
-    {'Kahramanmaraş Kalesi': ''},
-    {'Yedi Uyurlar Mağarası': ''},
-    {'Varda Köprüsü': ''},
-    {'Maraş Caddesi': ''}
+    'https://www.kulturportali.gov.tr/contents/images/kahramanmaras%20kalesi%20logolu.jpg?format=jpg&quality=50&width=1200',
+   'https://iasbh.tmgrup.com.tr/afa14c/1200/627/0/0/800/418?u=https://isbh.tmgrup.com.tr/sbh/2023/10/18/yedi-uyuyanlar-magarasi-nerede-ve-nasil-gidilir-yedi-uyurlar-magarasi-hangi-sehirde-kac-tane-st1-1697614803422.jpg',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR95OLtY9j98Y4Bo-d-lV2qfFKuIiIuCsX8L5jKZqsM7w&s',
+    'https://kahramanmaras.bel.tr/fs/styles/16x9_w960_1x_top/public/fields/news/news_image/2022/09/06/binevler_caddesi_yenileme_projesi_5.jpg?itok=YotqzlP1'
   ],
   'Erzurum': [
-    {'Erzurum Kalesi': ''},
-    {'Çifte Minareli Medrese': ''},
-    {'Palandöken Dağı': ''},
-    {'Atatürk Üniversitesi Botanik Bahçesi': ''}
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnurLI9DUKOtwljlMw5F9KRtKlgOy4WNKCbFFgZYsNfw&s',
+    'https://iasbh.tmgrup.com.tr/f10517/1200/627/0/48/1200/675?u=https://isbh.tmgrup.com.tr/sbh/2021/10/07/cifte-minareli-medrese-tarihi-ve-ozellikleri-cifte-minareli-medrese-nerede-kime-ait-1633603062382.jpg',
+   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpvViXwrKWA36LkrPjHdfzEjBfK8GGNyjMLB6Xi0SzeQ&s',
+   'https://bestinsaatas.com/rupload/108289.jpg'
   ],
   'Adıyaman': [
-    {'Nemrut Dağı': ''},
-    {'Cendere Köprüsü': ''},
-    {'Perre Antik Kenti': ''},
-    {'Adıyaman Müzesi': ''}
+  'https://www.bizevdeyokuz.com/wp-content/uploads/nemrut-dagi-adiyaman-13.jpg',
+    'https://mediacdn.yirmidort.tv/Documents/yirmidorthaber/images/2024/02/09/tarihi-cendere-koprusu-de-129_2-41.jpg',
+   'https://trthaberstatic.cdn.wp.trt.com.tr/resimler/2028000/perre-antik-kenti-a-2029989.jpg',
+   'https://kvmgm.ktb.gov.tr/Resim/342950,adiyaman-adiyaman01jpg.png?0'
   ],
    'Kocaeli': [
-    {'İzmit Saat Kulesi': ''},
-    {'Seka Park': ''},
-    {'Gebze Center Alışveriş Merkezi': ''},
-    {'İzmit Bilim ve Teknoloji Merkezi': ''}
+    'https://static.daktilo.com/sites/1009/uploads/2023/03/21/saat-kulesi-2.jpg',
+    'https://i20.haber7.net/resize/1280x720//haber/haber7/photos/2021/36/6_bin_agac_bulunan_en_buyuk_sehir_parkimiz_seka_park_1631277932_57.jpg',
+    'https://www.dogusgyo.com.tr/yenidogusgyo_files/2018613132642459_201821484033535_Gebze%20Center%20AVM%20%C3%BCst%20foto.jpg',
+   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOTRzyAl60T3SrgPcaFIwSNDBhnh8XbBYjS6IjIsXM5w&s'
   ],
   // Diğer şehirler ve turistik yerler buraya eklenecek
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   } 
   
  

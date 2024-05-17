@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:travel_app/Data.dart';
+import 'package:travel_app/HomePage.dart';
 import 'package:travel_app/Provider.dart';
 
 class DetailPage extends ConsumerWidget {
 //String name="Galata Kulesi ya da müze olarak kullanılmaya başlaması sonrasındaki adıyla Galata Kulesi Müzesi, İstanbul'un Beyoğlu ilçesinde bulunan bir kuledir. Adını, bulunduğu Galata semtinden alır.";
 String ?name="";
+final String images;
+
+  // Kurucu yöntemde "images" parametresini alın
+  DetailPage(this.images);
 
   @override
   Widget build(BuildContext context,WidgetRef ref) {
@@ -14,7 +20,7 @@ String ?name="";
       !.where((place) => place.containsKey('${ref.watch(popularTouristicPlace_name)}'))
       .first[ref.watch(popularTouristicPlace_name)]!;
 
-String img_Url="images/galata.png"; 
+String img_Url = images;
  return ScreenUtilInit(
       designSize: const Size(360, 690),
       minTextAdapt: true,
@@ -22,11 +28,30 @@ String img_Url="images/galata.png";
        builder: (_ , child) {
         return MaterialApp(
           home: Scaffold(
+                    appBar: AppBar(
+                        automaticallyImplyLeading: true,
+                      backgroundColor: Colors.blue, title: Text("Seyahat App",style: TextStyle(color: Colors.white,fontWeight: FontWeight.w400),),),
+
                     backgroundColor: Color.fromARGB(255, 255, 253, 253),
 
             body: Consumer(
           builder: (context, WidgetRef ref, child) {
             return  Column(children: [
+                SizedBox(height: 20.h,),
+
+              Row(
+                crossAxisAlignment:CrossAxisAlignment.start,
+                children: [
+                 SizedBox(width: 15.w,), InkWell(
+                  
+                  onTap:() {
+                     Navigator.push(context, 
+                      PageTransition(type: PageTransitionType.leftToRight,child: HomePage()),
+                     );
+                  },
+                  child: Icon(Icons.arrow_back_ios_outlined,size: 30,color: Colors.blue,)),
+                ],
+              ),
                 SizedBox(height: 20.h,),
                Padding(
                  padding: EdgeInsets.symmetric(vertical: 20.h,horizontal: 30.w),
@@ -38,7 +63,7 @@ String img_Url="images/galata.png";
                   child: ClipRRect
                   ( //{ref.watch(popularTouristicPlace_imageUrl)}
                     borderRadius: BorderRadius.circular(20),
-                    child: Image.asset(ref.watch(popularTouristicPlace_imageUrl).toString(),fit: BoxFit.cover,)),
+                    child: Image.network(img_Url,fit: BoxFit.cover,)),
                  ),
                ),
                SizedBox(height: 13.h,),

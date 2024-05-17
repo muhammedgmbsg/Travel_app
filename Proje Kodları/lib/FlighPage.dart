@@ -21,21 +21,30 @@ class _FlightOffersScreenState extends State<FlightOffersScreen> {
   
   bool control  =false;
   
+  
+  
 @override
 void initState() {
   super.initState();
   WidgetsBinding.instance!.addPostFrameCallback((_) {
     // initState tamamlandıktan sonra çalışacak olan asenkron işlemi başlat
-    getFlightOffers('DIY', 'ESB', context as WidgetRef);
+    Consumer(
+               builder: (context,WidgetRef ref,child) {
+                 
+                getFlightOffers('DIY', 'ESB',ref);
+                return child!;
+               }
+  
+    );
   });
 }
 
 
 
-  Future<List<FlightOffer>> getFlightOffers(String kalkis, String inis,WidgetRef ref) async {
+  Future<List<FlightOffer>> getFlightOffers(String kalkis, String inis,WidgetRef ref,) async {
     // API'den veri çekme işlemi burada
     String accessToken = await getAccessToken();
-    final String apiUrl =
+    final String apiUrl =                                 //${ref.watch(selectedDateTime)}
         "https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=$kalkis&destinationLocationCode=$inis&departureDate=${ref.watch(selectedDateTime)}&adults=1&max=5";
 
     final response = await http.get(
@@ -256,11 +265,12 @@ Map<String, List<String>> airportCodes = {
                       ),
                     ),
                     SizedBox(height: 30,),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(backgroundColor:Colors.blue ,minimumSize: Size(200.w, 35.h)),
-                                onPressed: searchFlightOffers(ref),
-                                child: Text('Uçuşları Ara',style: TextStyle(color: Colors.white),),
-                    ),SizedBox(height: 10.h,)
+                  ElevatedButton(
+  style: ElevatedButton.styleFrom(backgroundColor:Colors.blue ,minimumSize: Size(200.w, 35.h)),
+  onPressed: () => searchFlightOffers(ref),
+  child: Text('Uçuşları Ara',style: TextStyle(color: Colors.white),),
+),
+SizedBox(height: 10.h,)
                                   ],),
                   ),
                                  ),
