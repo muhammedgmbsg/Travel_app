@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:travel_app/HomePage.dart';
 import 'dart:convert';
 
 
 import 'package:http/http.dart' as http;
+import 'package:travel_app/Data.dart';
 import 'package:travel_app/Provider.dart';
 
 
 class FlightOffersScreen extends StatefulWidget {
+  
+
+  const FlightOffersScreen({super.key});
+
   @override
   _FlightOffersScreenState createState() => _FlightOffersScreenState();
 }
@@ -26,12 +30,13 @@ class _FlightOffersScreenState extends State<FlightOffersScreen> {
 @override
 void initState() {
   super.initState();
-  WidgetsBinding.instance!.addPostFrameCallback((_) {
+  WidgetsBinding.instance.addPostFrameCallback((_) {
     // initState tamamlandıktan sonra çalışacak olan asenkron işlemi başlat
     Consumer(
                builder: (context,WidgetRef ref,child) {
                  
                 getFlightOffers('DIY', 'ESB',ref);
+                selectedArrival= ref.watch(selectedCityProvider);
                 return child!;
                }
   
@@ -88,7 +93,7 @@ void initState() {
     // Diğer havayolu şirketlerini ekleyebilirsiniz
   };
 String? selectedDeparture;
-String? selectedArrival;
+ String? selectedArrival;
 
 Map<String, List<String>> airportCodes = {
   "Adana": ["ADA"],
@@ -181,8 +186,11 @@ Map<String, List<String>> airportCodes = {
       // Use builder only if you need to use library outside ScreenUtilInit context
       builder: (_ , child) {
         return Scaffold(
-          backgroundColor:  Color.fromARGB(255, 231, 225, 225),
-      appBar:AppBar(title: Text('Seyahat Uygulaması',style: TextStyle(color: Colors.white),),backgroundColor: Colors.blue,)
+          backgroundColor:  const Color.fromARGB(255, 231, 225, 225),
+      appBar:AppBar(title: Text('Uçuş Planı',style: TextStyle(color: Colors.white,fontSize: 16.h),),backgroundColor: Colors.blue,
+       iconTheme: IconThemeData(color: Colors.white), // İkon rengi
+            automaticallyImplyLeading: true,
+      )
       ,body: Column(
         children: [
           
@@ -196,12 +204,12 @@ Map<String, List<String>> airportCodes = {
                   child: Container(
                   width: double.infinity,
                   height: 215.h,
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(15),color: Color.fromARGB(255, 231, 225, 225),boxShadow: [
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(15),color: const Color.fromARGB(255, 231, 225, 225),boxShadow: [
                       BoxShadow(
                         color: const Color.fromARGB(255, 41, 41, 41).withOpacity(0.3),
             spreadRadius: 1,
             blurRadius: 2,
-            offset: Offset(0, 1),
+            offset: const Offset(0, 1),
                       )
                     ]),
                   child: Consumer(
@@ -209,7 +217,7 @@ Map<String, List<String>> airportCodes = {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         
-                      SizedBox(height: 20,),
+                      const SizedBox(height: 20,),
                       Padding(
                       padding: EdgeInsets.symmetric(horizontal: 27.w),
                         child: DropdownButtonFormField<String>(
@@ -221,9 +229,9 @@ Map<String, List<String>> airportCodes = {
                                     },decoration: InputDecoration(
                                       
                               hintText: 'Soru Seç',
-                              contentPadding: EdgeInsets.all(12.0),
+                              contentPadding: const EdgeInsets.all(12.0),
                               border: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.blue),
+                                borderSide: const BorderSide(color: Colors.blue),
                                 borderRadius: BorderRadius.circular(18.0),
                                 
                               ),
@@ -235,9 +243,9 @@ Map<String, List<String>> airportCodes = {
                                         child: Text(value),
                                       );
                                     }).toList(),
-                                    hint: Text('Kalkış Noktası'),
+                                    hint: const Text('Kalkış Noktası'),
                                         ),
-                      ),SizedBox(height: 10,),
+                      ),const SizedBox(height: 10,),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 27.w),
                       child: DropdownButtonFormField<String>(
@@ -250,7 +258,7 @@ Map<String, List<String>> airportCodes = {
                                     });
                                   },decoration: InputDecoration(
                             hintText: 'Soru Seç',
-                            contentPadding: EdgeInsets.all(12.0),
+                            contentPadding: const EdgeInsets.all(12.0),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(18.0),
                             ),
@@ -261,14 +269,16 @@ Map<String, List<String>> airportCodes = {
                       child: Text(value),
                                     );
                                   }).toList(),
-                                  hint: Text('Varış Noktası'),
+                                  hint: const Text('Varış Noktası'),
                       ),
                     ),
-                    SizedBox(height: 30,),
+                    const SizedBox(height: 30,),
                   ElevatedButton(
   style: ElevatedButton.styleFrom(backgroundColor:Colors.blue ,minimumSize: Size(200.w, 35.h)),
-  onPressed: () => searchFlightOffers(ref),
-  child: Text('Uçuşları Ara',style: TextStyle(color: Colors.white),),
+  onPressed: () { searchFlightOffers(ref);
+
+  },
+  child: const Text('Uçuşları Ara',style: TextStyle(color: Colors.white),),
 ),
 SizedBox(height: 10.h,)
                                   ],),
@@ -276,15 +286,15 @@ SizedBox(height: 10.h,)
                                  ),
                 ),]),
                
-            SizedBox(height: 30,),
-             Container(
+            const SizedBox(height: 30,),
+             SizedBox(
               height: 300.h,
               
                child: control == true ? FutureBuilder<List<FlightOffer>>(
                 future: flightOffers,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(color: Colors.blue,),
                     );
                   } else if (snapshot.hasError) {
@@ -311,10 +321,10 @@ SizedBox(height: 10.h,)
                           : "UNKNOWN";
                       String airlineName;
                       
-                       airlineName = airlineCodes?[airlineCode] ?? "Bilinmeyen Havayolu Şirketi";
+                       airlineName = airlineCodes[airlineCode] ?? "Bilinmeyen Havayolu Şirketi";
                       
                       
-                     String a =  flightOffers[index].secondLayoverArrival != null ? " - "+flightOffers[index].secondLayoverArrival.toString() : "";
+                     String a =  flightOffers[index].secondLayoverArrival != null ? " - ${flightOffers[index].secondLayoverArrival}" : "";
                        String totalPrice = flightOffers[index].price.total;
                                     String currency = flightOffers[index].price.currency;
                                     double totalPriceInTL = double.parse(totalPrice) * 4;
@@ -322,128 +332,180 @@ SizedBox(height: 10.h,)
                                 totalPriceInTL = double.parse(totalPrice) * 40;
                               }
                                  
-                        return Column(
+                        return Consumer(
+               builder: (context,WidgetRef ref,child) {
+                        
+                      return Column(
                           children: [
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 12.w,vertical: 4.h),
-                              child: Container(
-                                height: 130,decoration: BoxDecoration(color: Color.fromARGB(255, 225, 220, 218),borderRadius: BorderRadius.circular(17),
-                                boxShadow: [
-                      BoxShadow(
-                        color: const Color.fromARGB(255, 41, 41, 41).withOpacity(0.3),
-            spreadRadius: 2,
-            blurRadius: 2,
-            offset: Offset(0, 1),
-                      )
-                    ]),
-                              
-                                child: ListTile(
-                                  //  title: Text('${index+1}- ${flightOffers[index].originLocationCode} - ${flightOffers[index].destinationLocationCode}$a'),
-                                    subtitle: Column(
-                                      
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        SizedBox(height: 7.h,),
-                                       Row(children: [
-                                                                                SizedBox(width: 5.w,),
+                              child: InkWell(
+                                 onTap: () {
 
-                                        Container(
-                                          alignment: Alignment.center,
-                                          child:Text('$airlineName',style: TextStyle(fontSize: 12,color: Colors.white),) ,
-                                          width: 110.w,
-                                          height: 25.h,
-                                          decoration: BoxDecoration(
-                                          color:  Colors.blue,
-                                          borderRadius: BorderRadius.circular(12),
-                                          boxShadow: [
-                      BoxShadow(
-                        color: const Color.fromARGB(255, 41, 41, 41).withOpacity(0.1),
-            spreadRadius: 2,
-            blurRadius: 2,
-            offset: Offset(0, 1),
-                      )
-                    ]
-                                        ),),SizedBox(width: 100.w,), Container(
-                                           alignment: Alignment.center,
-                                          child: Text('${(totalPrice)} Euro ',
-                                          style: TextStyle(fontSize: 12,color: Colors.white),),
-                                          width: 80.w,
-                                          height: 25.h,
-                                          decoration: BoxDecoration(
-                                          color:  Colors.blue,
-                                          borderRadius: BorderRadius.circular(12),
-                                          boxShadow: [
-                      BoxShadow(
-                        color: const Color.fromARGB(255, 41, 41, 41).withOpacity(0.1),
-            spreadRadius: 2,
-            blurRadius: 2,
-            offset: Offset(0, 1),
-                      )
-                    ]
-                                        ),),
-                                       ],),
-                                       SizedBox(height: 5.h,),
-                                     Divider(
-              thickness: 0.25,  // Kalınlık ayarı (varsayılan: 1.0)
-              color: Colors.blue,   // Renk ayarı (varsayılan: Theme.of(context).dividerColor)
-              indent: 0, // Başlangıç kenarı boşluğu (varsayılan: 0)
-              endIndent: 0, // Bitiş kenarı boşluğu (varsayılan: 0)
-            ),SizedBox(height: 2.h,),
+                 
 
+               _showConfirmationDialog(context,flightOffers[index].originLocationCode,flightOffers[index].destinationLocationCode ,flightOffers[index].departureTime,'${(totalPrice)} Euro ',ref.watch(selectedDateTime),airlineName,flightOffers[index].secondLayoverArrival != null ? true : false,flightOffers[index].arrivalTime.substring(11));
 
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-
-           Column(children: [ Text('${flightOffers[index].originLocationCode}'),Text('${flightOffers[index].departureTime.substring(11)}',style: TextStyle(fontSize: 11.sp),),           
-                         ],)
-
-            
-            
-            ,SizedBox(width: 55.w,),
-            Row(
-              children: [
-                Container(child: Icon(Icons.flight_takeoff_outlined,size: 25.h,),), flightOffers[index].secondLayoverArrival != null ? 
-                Icon(Icons.flight_takeoff_outlined,size: 25.h,) : SizedBox(),
-              ],
-            ),
-            SizedBox(width: 55.w,),
-            Column(children: [
-            
-            SizedBox(width: 3.h),
-            Text(
-                                    '${flightOffers[index].destinationLocationCode}$a'),
-            Text('${flightOffers[index].arrivalTime.substring(11)}',style: TextStyle(fontSize: 11.sp),),SizedBox(height: 3.h,),],)
-
-          ],)
-
-
-
-
-                                       //  Text('HavaYolu: $airlineName'),
-                                     //   Text('Kalkış Saati: ${flightOffers[index].departureTime.substring(11)}'),
-                                   //     Text('İniş Saati: ${flightOffers[index].arrivalTime.substring(11)}'),
-                                 //      Text('Fiyat: ${(totalPriceInTL!=null ?totalPriceInTL.toStringAsFixed(2):"00")} TL'),
-                                      
-                                      ],
+              
+               
+               },
+  
+    
+                                
+                                child: Container(
+                                  height: 130,decoration: BoxDecoration(color: const Color.fromARGB(255, 225, 220, 218),borderRadius: BorderRadius.circular(17),
+                                  boxShadow: [
+                                                      BoxShadow(
+                                                        color: const Color.fromARGB(255, 41, 41, 41).withOpacity(0.3),
+                                            spreadRadius: 2,
+                                            blurRadius: 2,
+                                            offset: const Offset(0, 1),
+                                                      )
+                                                    ]),
+                                
+                                  child: ListTile(
+                                    //  title: Text('${index+1}- ${flightOffers[index].originLocationCode} - ${flightOffers[index].destinationLocationCode}$a'),
+                                      subtitle: Column(
+                                        
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          SizedBox(height: 7.h,),
+                                         Row(children: [
+                                                                                  SizedBox(width: 5.w,),
+                                
+                                          Container(
+                                            alignment: Alignment.center,
+                                            width: 110.w,
+                                            height: 25.h,
+                                            decoration: BoxDecoration(
+                                            color:  Colors.blue,
+                                            borderRadius: BorderRadius.circular(12),
+                                            boxShadow: [
+                                                      BoxShadow(
+                                                        color: const Color.fromARGB(255, 41, 41, 41).withOpacity(0.1),
+                                            spreadRadius: 2,
+                                            blurRadius: 2,
+                                            offset: const Offset(0, 1),
+                                                      )
+                                                    ]
+                                          ),
+                                            child:Text(airlineName,style: const TextStyle(fontSize: 12,color: Colors.white),) ,),SizedBox(width: 100.w,), Container(
+                                             alignment: Alignment.center,
+                                            width: 80.w,
+                                            height: 25.h,
+                                            decoration: BoxDecoration(
+                                            color:  Colors.blue,
+                                            borderRadius: BorderRadius.circular(12),
+                                            boxShadow: [
+                                                      BoxShadow(
+                                                        color: const Color.fromARGB(255, 41, 41, 41).withOpacity(0.1),
+                                            spreadRadius: 2,
+                                            blurRadius: 2,
+                                            offset: const Offset(0, 1),
+                                                      )
+                                                    ]
+                                          ),
+                                            child: Text('${(totalPrice)} Euro ',
+                                            style: const TextStyle(fontSize: 12,color: Colors.white),),),
+                                         ],),
+                                         SizedBox(height: 5.h,),
+                                       const Divider(
+                                              thickness: 0.25,  // Kalınlık ayarı (varsayılan: 1.0)
+                                              color: Colors.blue,   // Renk ayarı (varsayılan: Theme.of(context).dividerColor)
+                                              indent: 0, // Başlangıç kenarı boşluğu (varsayılan: 0)
+                                              endIndent: 0, // Bitiş kenarı boşluğu (varsayılan: 0)
+                                            ),SizedBox(height: 2.h,),
+                                
+                                
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                
+                                           Column(children: [ Text(flightOffers[index].originLocationCode),Text(flightOffers[index].departureTime.substring(11),style: TextStyle(fontSize: 11.sp),),           
+                                                         ],)
+                                
+                                            
+                                            
+                                            ,SizedBox(width: 55.w,),
+                                            Row(
+                                              children: [
+                                                Container(child: Icon(Icons.flight_takeoff_outlined,size: 25.h,),), flightOffers[index].secondLayoverArrival != null ? 
+                                                Icon(Icons.flight_takeoff_outlined,size: 25.h,) : const SizedBox(),
+                                              ],
+                                            ),
+                                            SizedBox(width: 55.w,),
+                                            Column(children: [
+                                            
+                                            SizedBox(width: 3.h),
+                                            Text(
+                                      '${flightOffers[index].destinationLocationCode}$a'),
+                                            Text(flightOffers[index].arrivalTime.substring(11),style: TextStyle(fontSize: 11.sp),),SizedBox(height: 3.h,),],)
+                                
+                                          ],)
+                                
+                                
+                                
+                                
+                                         //  Text('HavaYolu: $airlineName'),
+                                       //   Text('Kalkış Saati: ${flightOffers[index].departureTime.substring(11)}'),
+                                     //     Text('İniş Saati: ${flightOffers[index].arrivalTime.substring(11)}'),
+                                   //      Text('Fiyat: ${(totalPriceInTL!=null ?totalPriceInTL.toStringAsFixed(2):"00")} TL'),
+                                        
+                                        ],
+                                      ),
+                                      // Diğer bilgileri de buraya ekleyebilirsiniz
                                     ),
-                                    // Diğer bilgileri de buraya ekleyebilirsiniz
-                                  ),
+                                ),
                               ),
                             ),
-                            SizedBox(height: 10,)
+                            const SizedBox(height: 10,)
                           ],
                         );
                         },
-                      ),
-                    );
+                      );
+                  }));
                   }
                 },
-                    ) : Text('Henüz Arama Yapılmadı...')
+                    ) : const Text('Henüz Arama Yapılmadı...')
              ) ]),
           ),
         ],
       ));});}
+
+       void _showConfirmationDialog(BuildContext context, String kalkis, String varis, String kalkisSaati,String fiyat,String tarih,String havayoluSirketi, bool aktarmaVarmi,String varisSaati) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Favoriye Ekle'),
+          content: const Text('Uçuş planlarına eklemek istiyor musunuz?'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Dialog'u kapat
+              },
+              child: const Text('Kapat',style: TextStyle(color: Colors.blue),),
+            ),
+            TextButton(
+              onPressed: () {
+                _addPlace(kalkis, [kalkis, varis, kalkisSaati,fiyat,tarih,havayoluSirketi,aktarmaVarmi,varisSaati]);
+                debugPrint("eklendi");
+                
+                Navigator.of(context).pop(); // Dialog'u kapat
+              },
+              child: const Text('Ekle',style: TextStyle(color: Colors.blue),),
+            ),
+          ],
+        );
+      },
+    );
+  }
+void _addPlace(String key, List value) {
+    
+      Data.PlannedFlyList[key] = value;
+    
+  }
+
   }
 
   class FlightOffer {
@@ -516,9 +578,9 @@ class Price {
 
 // istek atmak için api key, id ve url
 Future<String> getAccessToken() async {
-  final String apiUrl = "https://test.api.amadeus.com/v1/security/oauth2/token";
-  final String clientId = "ACVvEXkae4VzQYTQUkghWoLYKSvUAXsj";
-  final String clientSecret = "HpKqP5mPUfib6ATV";
+  const String apiUrl = "https://test.api.amadeus.com/v1/security/oauth2/token";
+  const String clientId = "ACVvEXkae4VzQYTQUkghWoLYKSvUAXsj";
+  const String clientSecret = "HpKqP5mPUfib6ATV";
 
   final response = await http.post(
     Uri.parse(apiUrl),

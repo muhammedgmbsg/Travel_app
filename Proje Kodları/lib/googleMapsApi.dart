@@ -4,9 +4,9 @@ import 'package:http/http.dart' as http;
 
 
 Future<void> sendOpenAIRequest() async {
-  final String openaiApiKey = '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'; // OpenAI API anahtarınızı buraya ekleyin
+  const String openaiApiKey = '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'; // OpenAI API anahtarınızı buraya ekleyin
 
-  final String apiUrl = 'https://api.openai.com/v1/chat/completions';
+  const String apiUrl = 'https://api.openai.com/v1/chat/completions';
   final Map<String, dynamic> requestData = {
     "model": "gpt-3.5-turbo",
     "messages": [

@@ -1,4 +1,4 @@
 import 'package:flutter/material.dart';
 
-Color appBarColor = Colors.red;
-TextStyle fonts = TextStyle();
+Color appBarColor = Colors.blue;
+TextStyle fonts = const TextStyle();

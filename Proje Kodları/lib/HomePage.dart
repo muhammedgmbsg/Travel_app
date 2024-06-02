@@ -5,18 +5,25 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/Data.dart';
 import 'package:travel_app/DetailPage.dart';
 import 'package:travel_app/FlighPage.dart';
+import 'package:travel_app/FvFly.dart';
+import 'package:travel_app/FvPlace.dart';
 import 'package:travel_app/Provider.dart';
-import 'package:travel_app/main.dart';
+import 'package:travel_app/login_page.dart';
 
 
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+
   @override
   State<HomePage> createState() => _HomePageState();
+  
 }
 
 class _HomePageState extends State<HomePage> {
   
+
 
   final List<String> gptQuestions = [
     'Neyi meşhur?',
@@ -32,18 +39,85 @@ class _HomePageState extends State<HomePage> {
   
   bool control = false;
   String selectedQuestion = 'Neyi meşhur?'; //Başlangıçta seçilen soru
-  String selectedCity = 'İstanbul'; // Başlangıçta seçilen şehir
+  
+  String selectedCity ="İstanbul";
+ 
+  
   @override
   Widget build(BuildContext context) {
- return ScreenUtilInit(
+    return
+     Consumer(
+          builder: (context, WidgetRef ref, child) {
+        selectedCity = ref.watch(selectedCityProvider);
+        debugPrint("deger1=$selectedCity");
+            return ScreenUtilInit(
       designSize: const Size(360, 690),
       minTextAdapt: true,
       splitScreenMode: true,
       // Use builder only if you need to use library outside ScreenUtilInit context
       builder: (_ , child) {
-        return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(backgroundColor: Colors.blue, title: Text("Seyahat App",style: TextStyle(color: Colors.white,fontWeight: FontWeight.w400),),),
+        return 
+      Scaffold(
+          drawer: Drawer( child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Bilgilerim',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    'scream.muhammed@gmail.com',
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 233, 228, 228),
+                      fontSize: 15,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          
+            ListTile(
+              leading: const Icon(Icons.wallet_travel),
+              title: const Text('Yolculuk Planlarım'),
+              onTap: () {
+                // Drawer öğesine tıklandığında yapılacak işlemler
+                Navigator.pop(context); // Drawer'ı kapatır
+                Navigator.push(context, MaterialPageRoute(builder:(context) =>  FvFly(),)); // Drawer'ı kapatır
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.place_outlined),
+              title: const Text('Beğendiğim Yerler'),
+              onTap: () {
+                // Drawer öğesine tıklandığında yapılacak işlemler
+                Navigator.push(context, MaterialPageRoute(builder:(context) =>  FavoritePage(),)); // Drawer'ı kapatır
+                // Ayarlar sayfasına gitmek için gerekli navigasyon işlemleri buraya eklenir
+              },
+            ),
+            const Divider(), // İsteğe bağlı: Liste öğeleri arasına ayırıcı ekler
+            ListTile(
+              leading: const Icon(Icons.exit_to_app_rounded),
+              title: const Text('Çıkış Yap'),
+              onTap: () {
+                // Drawer öğesine tıklandığında yapılacak işlemler
+                Navigator.push(context, MaterialPageRoute(builder:(context) =>  const LoginPage(),)); // Drawer'ı kapatır
+                // Hakkında sayfasına gitmek için gerekli navigasyon işlemleri buraya eklenir
+              },
+            ),
+          ],
+        ),),
+        appBar: AppBar(backgroundColor: Colors.blue, title: Text("Seyahat Uygulaması",style: TextStyle(color: Colors.white,fontSize: 16.h),),),
         backgroundColor: const Color.fromARGB(255, 255, 253, 253),
         body: Container(
           child: Column(children: [
@@ -54,15 +128,15 @@ class _HomePageState extends State<HomePage> {
               
                 children: [
                   
-                  Container(
+                  const SizedBox(
                     
                     width: 270,
                     child:
                   
-                   const Text("Hoşgeldin",style: TextStyle(fontSize: 15,fontWeight: FontWeight.w400),)),SizedBox(height: 10.h,),Container(
+                   Text("Hoşgeldin",style: TextStyle(fontSize: 15,fontWeight: FontWeight.w400),)),SizedBox(height: 10.h,),const SizedBox(
                    
                    width: 270,
-                    child: const Text('Muhammed Gümüşboğa',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500,color: Colors.blue),)),
+                    child: Text('Muhammed Gümüşboğa',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500,color: Colors.blue),)),
                   
                     
                 ],
@@ -70,28 +144,34 @@ class _HomePageState extends State<HomePage> {
               ),
               Padding(
                 padding:  EdgeInsets.only(left: 5.w,top: 20.h),
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: const Color.fromARGB(255, 76, 75, 75)),
-                    shape: BoxShape.circle,
-                    boxShadow: [
-                      BoxShadow(
-                        color: const Color.fromARGB(255, 41, 41, 41).withOpacity(0.3),
-            spreadRadius: 2,
-            blurRadius: 2,
-            offset: const Offset(0, 1),
-                      )
-                    ]
-                  ),
-                  child: ClipOval(
-                    
-                          child: Image.asset(
-                            'images/muhammed.jpg',
-                            width: 60,
-                            height: 60,
-                            fit:BoxFit.cover
+                child: InkWell(
+                  onTap: () {
+                     Scaffold.of(context).openDrawer();
+                  },
+                  child: Container(
+                  
+                    decoration: BoxDecoration(
+                      border: Border.all(color: const Color.fromARGB(255, 76, 75, 75)),
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color.fromARGB(255, 41, 41, 41).withOpacity(0.3),
+                              spreadRadius: 2,
+                              blurRadius: 2,
+                              offset: const Offset(0, 1),
+                        )
+                      ]
+                    ),
+                    child: ClipOval(
+                      
+                            child: Image.asset(
+                              'images/muhammed.jpg',
+                              width: 60,
+                              height: 60,
+                              fit:BoxFit.cover
+                            ),
                           ),
-                        ),
+                  ),
                 ),
                 ),
               
@@ -123,7 +203,7 @@ class _HomePageState extends State<HomePage> {
                child: const Text('Popüler Turistik Yerler',style: TextStyle(fontSize: 14,fontWeight: FontWeight.w400,color: Colors.blue),),
              ),
              
-             scrollElements(150,110,"${Data.cityPopularPlaceText['$selectedCity']![0]}","${Data.cityPopularPlacesImg_url['$selectedCity']![0]}","${Data.cityPopularPlaceText['$selectedCity']![1]}","${Data.cityPopularPlacesImg_url['$selectedCity']![1]}","${Data.cityPopularPlaceText['$selectedCity']![2]}","${Data.cityPopularPlacesImg_url['$selectedCity']![2]}","${Data.cityPopularPlaceText['$selectedCity']![3]}","${Data.cityPopularPlacesImg_url['$selectedCity']![3]}"),const SizedBox(height: 10,),
+             scrollElements(150,110,Data.cityPopularPlaceText[selectedCity]![0],Data.cityPopularPlacesImg_url[selectedCity]![0],Data.cityPopularPlaceText[selectedCity]![1],Data.cityPopularPlacesImg_url[selectedCity]![1],Data.cityPopularPlaceText[selectedCity]![2],Data.cityPopularPlacesImg_url[selectedCity]![2],Data.cityPopularPlaceText[selectedCity]![3],Data.cityPopularPlacesImg_url[selectedCity]![3]),const SizedBox(height: 10,),
              Padding(
                padding:  EdgeInsets.only(right: 245.w),
                child: const Text('Soru Sor',style: TextStyle(fontSize: 14,fontWeight: FontWeight.w400,color:Colors.blue),),
@@ -146,9 +226,9 @@ class _HomePageState extends State<HomePage> {
            
 
         ),
-        ),);
-  },);}
-
+        );
+  },);});
+}
   ElevatedButton travelCreate() {
     return ElevatedButton(
           onPressed: () {
@@ -179,8 +259,8 @@ class _HomePageState extends State<HomePage> {
                   
                 ),
               borderRadius: BorderRadius.circular(8),
-              boxShadow: [
-               const BoxShadow(
+              boxShadow: const [
+               BoxShadow(
                       color:Color.fromARGB(255, 231, 225, 225),
           spreadRadius: 2,
           blurRadius: 2,
@@ -192,7 +272,7 @@ class _HomePageState extends State<HomePage> {
                            padding: const EdgeInsets.all(10.0),
                            child: TypewriterAnimatedTextKit(
               
-              text:  [Data.cityAnswer['$selectedCity']![questionNumber()].toString(),],
+              text:  [Data.cityAnswer[selectedCity]![questionNumber()].toString(),],
                 textStyle: const TextStyle(
                   fontSize: 15.0,
                   fontWeight: FontWeight.w400,
@@ -228,8 +308,8 @@ class _HomePageState extends State<HomePage> {
           });
         }
         ,decoration: InputDecoration(
-          enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey),borderRadius: BorderRadius.circular(8)),
-          focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.blue),borderRadius: BorderRadius.circular(8)),
+          enabledBorder: OutlineInputBorder(borderSide: const BorderSide(color: Colors.grey),borderRadius: BorderRadius.circular(8)),
+          focusedBorder: OutlineInputBorder(borderSide: const BorderSide(color: Colors.blue),borderRadius: BorderRadius.circular(8)),
       hintText: 'Soru Seç',
       contentPadding: const EdgeInsets.all(12.0),
       border: OutlineInputBorder(
@@ -274,10 +354,10 @@ class _HomePageState extends State<HomePage> {
               scrollDirection: Axis.horizontal,
                child: Row(
                 children: [
-                  popularPlace(place1,img1,width,height),const SizedBox(width: 10,),
-                   popularPlace(place2,img2,width,height),const SizedBox(width: 10,),
-                    popularPlace(place3,img3,width,height),const SizedBox(width: 10,),
-                    popularPlace(place4,img4,width,height),const SizedBox(width: 10,),
+                  popularPlace(place1,img1,width,height,0),const SizedBox(width: 10,),
+                   popularPlace(place2,img2,width,height,1),const SizedBox(width: 10,),
+                    popularPlace(place3,img3,width,height,2),const SizedBox(width: 10,),
+                    popularPlace(place4,img4,width,height,3),const SizedBox(width: 10,),
                     
                   
                 ],
@@ -287,7 +367,7 @@ class _HomePageState extends State<HomePage> {
   }
 
 
-         Column popularPlace(String placeText,String images,double width,double height) {
+         Column popularPlace(String placeText,String images,double width,double height,int imgNo) {
     return Column(
                   children: [
                     Container(
@@ -299,14 +379,14 @@ class _HomePageState extends State<HomePage> {
           builder: (context, WidgetRef ref, child) {
             return  InkWell(
                           onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context) =>DetailPage(images) ));
-                            debugPrint("xddd"+images);
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context) =>DetailPage(images,imgNo) ));
+                            debugPrint("xddd$images");
 
                              ref.read(popularTouristicPlace_name.notifier).state = placeText;
                           //   ref.read(popularTouristicPlace_imageUrl.notifier).state= images;
                            debugPrint(ref.watch(popularTouristicPlace_name));
                            debugPrint(ref.watch(popularTouristicPlace_imageUrl));
-                           debugPrint("hahah" + images);
+                           debugPrint("hahah$images");
 
                           },
                           
@@ -320,8 +400,8 @@ class _HomePageState extends State<HomePage> {
                             );}
                       ),
                         
-                    ),SizedBox(height: 10,),
-                   Text("$placeText")
+                    ),const SizedBox(height: 10,),
+                   Text(placeText)
                   ],
                 );
   }
@@ -341,15 +421,18 @@ class _HomePageState extends State<HomePage> {
                          value: selectedCity,
                          onChanged: (String? newValue) {
                            setState(() {
+
+
                              selectedCity = newValue!;
                              control = true;
-                             ref.read(selectedCityProvider.notifier).state = newValue!;
+                             ref.read(selectedCityProvider.notifier).state = newValue;
+                             debugPrint("deger2=${ref.watch(selectedCityProvider)}");
                            });
                          },
                          
                          decoration: InputDecoration(
-                   enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey),borderRadius: BorderRadius.circular(8)),
-                             focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.blue),borderRadius: BorderRadius.circular(8)),
+                   enabledBorder: OutlineInputBorder(borderSide: const BorderSide(color: Colors.grey),borderRadius: BorderRadius.circular(8)),
+                             focusedBorder: OutlineInputBorder(borderSide: const BorderSide(color: Colors.blue),borderRadius: BorderRadius.circular(8)),
                            hintText: 'Şehir Seçin',
                            contentPadding: const EdgeInsets.all(12.0),
                            border: OutlineInputBorder(
@@ -432,7 +515,7 @@ class _HomePageState extends State<HomePage> {
                       selectedDate = pickedDate;
                       //${ref.watch(selectedDateTime)}
                       ref.read(selectedDateTime.notifier).state = selectedDate.toString().substring(0,10);
-                      debugPrint("hhaha" + ref.watch(selectedDateTime).toString());
+                      debugPrint("hhaha${ref.watch(selectedDateTime)}");
 
                     }
                   },
@@ -463,7 +546,7 @@ class _HomePageState extends State<HomePage> {
 
                   if(selectedTransportation == "Uçak"){
                   Navigator.of(context).pop();
-                  Navigator.of(context).push(MaterialPageRoute(builder: ((context) => FlightOffersScreen())));
+                  Navigator.of(context).push(MaterialPageRoute(builder: ((context) => const FlightOffersScreen())));
                 }else{
                    //Otobüs ise otobüs ulaşım sayfasına yönlendir
                 }},

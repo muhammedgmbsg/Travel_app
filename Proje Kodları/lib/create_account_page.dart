@@ -6,7 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/account_page_providers.dart';
 import 'package:travel_app/functions.dart';
 import 'package:travel_app/login_page.dart';
-import 'dart:ui';
 
 
 class RegisterPage extends StatelessWidget {
@@ -20,43 +19,99 @@ class RegisterPage extends StatelessWidget {
       splitScreenMode: false,
       builder: (context, child) {
         return Scaffold(
-          body: SafeArea(
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(top: 30.h, left: 30.w),
-                    child: const BackPageButton(),
-                  ),
-                  SizedBox(height: 30.h),
-                  const Center(
-                    child: RegisterThemeText(),
-                  ),
-                  SizedBox(height: 60.h),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 50.w),
-                    child: const UsernameFormRegister(),
-                  ),
-                  SizedBox(height: 5.h),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 50.w),
-                    child: const MailFormRegister(),
-                  ),
-                  SizedBox(height: 10.h),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 50.w),
-                    child: const PasswordForm(),
-                  ),
-                  SizedBox(height: 10.h),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 50.w),
-                    child: const RePasswordFormRegister(),
-                  ),
-                  SizedBox(height: 15.h),
-                  const Center(child: CreateButton()),
+          body: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                
+              Stack(
+                children: [
+
+                   Container(
+                   width: double.infinity,
+                  height: 170.h,
+                  decoration: const BoxDecoration(
+                    
+                   
+                    color: Colors.blue,borderRadius: BorderRadius.only(bottomLeft: Radius.circular(150))),
+                   child: Padding(
+                     padding: EdgeInsets.only(top: 10.h),
+                     child: const ClipOval(
+                      
+                      
+                     ),
+                   ),),
+                    Padding(
+                      padding:  EdgeInsets.only(left: 240.w,top: 110.h),
+                      
+                        child: ClipOval(
+                          child: Container(
+                            width: 300,
+                            height: 100.h,
+                            decoration: const BoxDecoration(
+                
+                            
+                            ),
+                            child: Image.asset(
+                                          'images/img3.png',
+                                           
+                                           fit: BoxFit.cover,
+                                        
+                                        ),
+                          ),
+                        ),
+                      
+                    ),
+                     Padding(
+                  padding: EdgeInsets.only(top: 200.h, left: 30.w),
+                  
+                  child: const BackPageButton(),
+                ),
                 ],
+              
               ),
+          
+                
+               
+                SizedBox(height: 15.h),
+                const Center(
+                  child: RegisterThemeText(),
+                ),
+                SizedBox(height: 30.h),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 50.w),
+                  child: const UsernameFormRegister(),
+                ),
+                SizedBox(height: 5.h),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 50.w),
+                  child: const MailFormRegister(),
+                ),
+                SizedBox(height: 5.h),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 50.w),
+                  child: const PasswordForm(),
+                ),
+                SizedBox(height: 20 .h),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 50.w),
+                  child: const RePasswordFormRegister(),
+                ),
+                const SizedBox(height: 10,),
+                Padding(
+                  padding: EdgeInsets.only(left: 60.w,),
+                  child: Text(
+                          "Hüküm ve Koşullar",
+                          style: TextStyle(
+                            fontSize: 13.h,
+                            decoration: TextDecoration.underline,
+                            decorationColor: Colors.blue,
+                            color: Colors.blue,
+                          )),
+                ),
+                SizedBox(height: 25.h,),
+                const Center(child: CreateButton()),
+              ],
             ),
           ),
         );
@@ -72,11 +127,11 @@ class RegisterThemeText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text("RentEasy",
+    return Text("Seyahat App",
         style: 
              TextStyle(
-          fontSize: 50.h,
-          color: Colors.red,
+          fontSize: 40.h,
+          color: Colors.blue,
           fontWeight: FontWeight.w600,
         ));
   }
@@ -237,7 +292,7 @@ class UsernameFormRegister extends ConsumerWidget {
             FilteringTextInputFormatter.deny(RegExp(r'\s')),
           ],
           decoration: InputDecoration(
-            hintText: "Kullanıcı Adı",
+            hintText: "Ad-Soyad",
             hintStyle: fonts,
             isCollapsed: false,
             contentPadding: const EdgeInsets.only(left: 15),
@@ -316,7 +371,7 @@ class CreateButton extends ConsumerWidget {
         width: 150,
         decoration: BoxDecoration(
             color: appBarColor, borderRadius: BorderRadius.circular(30)),
-        child: Center(
+        child: const Center(
           child: Text(
             "Kayıt Ol",
             style:  TextStyle(

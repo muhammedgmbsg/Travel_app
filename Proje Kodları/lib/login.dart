@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(LoginScreen());
+  runApp(const LoginScreen());
 }
 
 class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Login'),
+          title: const Text('Login'),
         ),
-        body: Padding(
+        body: const Padding(
           padding: EdgeInsets.all(20.0),
           child: LoginForm(),
         ),
@@ -22,6 +24,8 @@ class LoginScreen extends StatelessWidget {
 }
 
 class LoginForm extends StatefulWidget {
+  const LoginForm({super.key});
+
   @override
   _LoginFormState createState() => _LoginFormState();
 }
@@ -37,15 +41,15 @@ class _LoginFormState extends State<LoginForm> {
       children: <Widget>[
         TextFormField(
           controller: _usernameController,
-          decoration: InputDecoration(labelText: 'Username'),
+          decoration: const InputDecoration(labelText: 'Username'),
         ),
-        SizedBox(height: 20.0),
+        const SizedBox(height: 20.0),
         TextFormField(
           controller: _passwordController,
           obscureText: true,
-          decoration: InputDecoration(labelText: 'Password'),
+          decoration: const InputDecoration(labelText: 'Password'),
         ),
-        SizedBox(height: 20.0),
+        const SizedBox(height: 20.0),
         ElevatedButton(
           onPressed: () {
             // Burada kullanıcı adı ve şifre doğrulaması yapılabilir
@@ -57,7 +61,7 @@ class _LoginFormState extends State<LoginForm> {
             print('Username: $username');
             print('Password: $password');
           },
-          child: Text('Login'),
+          child: const Text('Login'),
         ),
       ],
     );

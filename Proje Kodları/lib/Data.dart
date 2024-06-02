@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 
 class Data{
   
@@ -222,7 +221,7 @@ static Map<String, List<String>> cityPopularPlaceText = {
     ],
     'Eskişehir': [
       'Sazova Park',
-      'Eskişehir Bilim, Sanat ve Kültür Parkı',
+      'Sanat ve Kültür Parkı',
       'Odunpazarı Evleri',
       'Kent Park'
     ],
@@ -545,6 +544,14 @@ static Map<String, List<String>> cityPopularPlaceText = {
   // Diğer şehirler ve turistik yerler buraya eklenecek
 };
 
+
+ static Map<String,List> favoritePageList = {
+  //"Yer Adi" : ["Yer Adi","Şehir","Url"]
+ };
+
+ static Map<String,List> PlannedFlyList = {
+  //"randomNumara" : ["kalkis","varis","kalkisSaati","fiyat","tarih","havayoluSirketi","aktarmaVarmi,"varisSaati"]
+ };
 
 
 

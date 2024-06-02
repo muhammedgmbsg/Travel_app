@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/HomePage.dart';
@@ -19,40 +18,51 @@ class LoginPage extends StatelessWidget {
       splitScreenMode: false,
       builder: (_, child) {
         return Scaffold(
+        
           body: SingleChildScrollView(
             child: Column(
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.only(right: 100.w),
+                  padding: EdgeInsets.only(right: 120.w),
                   child: Container(
                     
                     width: double.infinity,
-                    height: 200.h,
+                    height: 250.h,
+                    decoration: const BoxDecoration(color: Colors.blue,
+                    borderRadius: BorderRadius.only(bottomRight: Radius.circular(90))
+                    
+                    ),
                     child: Padding(
                       padding: const EdgeInsets.only(right: 30,top: 30),
                       child: Center(child: Container(
-                        width: 75,height: 75,
-                        child: Icon(Icons.person_2_outlined,size: 35,color: Colors.blue,)
-                        ,decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.only(bottomRight: Radius.circular(30),
-                        bottomLeft:Radius.circular(10) ,
-                        )
+                        
+                        width: 135.w,height: 135.h,decoration: const BoxDecoration(color: Colors.blue,
+                        shape: BoxShape.circle
+                        
                         ,  boxShadow: [
                   BoxShadow(
                     color: Colors.black26,
-                    blurRadius: 10.0,
-                    offset: Offset(2, 2),
+                    blurRadius: 4.0,
+                //    offset: Offset(1, 1),
                   ),
                 ],
-                        ),),),
-                    ),
-                    decoration: BoxDecoration(color: Colors.blue,
-                    borderRadius: BorderRadius.only(bottomRight: Radius.circular(90))
+                        ),
+                        child: ClipOval(
                     
+                          child: Image.asset(
+                            'images/log2.png',
+                             width: 500,
+                             height: 500.h,
+                             fit: BoxFit.cover,
+                          
+                          ),
+                        )
+                        ,),),
                     ),
                    ),
                 ),
                 
-                SizedBox(height: 40.h),
+                SizedBox(height: 50.h),
                 const ThemeText(),
                 SizedBox(height: 50.h),
                 Padding(
@@ -67,9 +77,9 @@ class LoginPage extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 60.w),
                   child: const MyRowWidget(),
                 ),
-                SizedBox(height: 40.h),
+                SizedBox(height: 30.h),
                 const LoginButton(),
-                SizedBox(height: 40.h),
+                SizedBox(height: 25.h),
                 const CreateAccountButton(),
               ],
             ),
@@ -140,7 +150,7 @@ class CheckBox extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Checkbox(
-      activeColor: appBarColor,
+      activeColor: Colors.blue,
       value: ref.watch(isChecking),
       onChanged: (value) {
         ref.read(isChecking.notifier).state = value!;
@@ -162,7 +172,7 @@ class LoginButton extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) =>  HomePage(),
+              builder: (context) =>  const HomePage(),
             ));
       },
       child: Container(
@@ -170,10 +180,10 @@ class LoginButton extends StatelessWidget {
         width: 150,
         decoration: BoxDecoration(
             color: Colors.blue, borderRadius: BorderRadius.circular(30)),
-        child: Center(
+        child: const Center(
           child: Text(
             "Giriş Yap",
-            style:  const TextStyle(
+            style:  TextStyle(
                     fontSize: 20,
                     color: Colors.white,
                     fontWeight: FontWeight.w600)),
@@ -205,7 +215,7 @@ class PasswordForm extends StatelessWidget {
           ),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30.0),
-              borderSide: BorderSide(color: appBarColor, width: 1.5)),
+              borderSide: const BorderSide(color: Colors.blue, width: 1.5)),
         ),
       ),
     );
@@ -223,7 +233,7 @@ class UserNameForm extends StatelessWidget {
       height: 50,
       child: TextFormField(
         decoration: InputDecoration(
-          hintText: "Kullanıcı adı",
+          hintText: "Email",
           hintStyle: fonts,
           isCollapsed: false,
           contentPadding: const EdgeInsets.only(left: 15),
@@ -232,7 +242,7 @@ class UserNameForm extends StatelessWidget {
           ),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30.0),
-              borderSide: BorderSide(color: appBarColor, width: 1.5)),
+              borderSide: const BorderSide(color: Colors.blue, width: 1.5)),
         ),
       ),
     );
@@ -248,7 +258,7 @@ class ThemeText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text("Seyahat App",
         style:  TextStyle(
-          fontSize: 30.h,
+          fontSize: 40.h,
           color: Colors.blue,
           fontWeight: FontWeight.w600,
         ));

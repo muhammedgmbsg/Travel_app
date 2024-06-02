@@ -1,26 +1,24 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:http/http.dart' as http;
-import 'package:travel_app/HomePage.dart';
 import 'package:travel_app/login_page.dart';
 
 void main() {
-  runApp(ProviderScope(child : MyApp() ));
+  runApp(const ProviderScope(child : MyApp() ));
 }
 
 
 
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
-  Widget build(BuildContext context) => MaterialApp(
+  Widget build(BuildContext context) => const MaterialApp(
       
       home: Scaffold(
       
       body:  Padding(
-        padding: const EdgeInsets.only(),
+        padding: EdgeInsets.only(),
         child: ProviderScope(child: Material(child: LoginPage())),
       ),
       )

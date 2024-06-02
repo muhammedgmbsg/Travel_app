@@ -6,15 +6,15 @@
 	<dict>
 		<key>Info.plist</key>
 		<data>
-		85iaADE5tc/NukRC+KGdiZaZ0ZA=
+		h5OB7aKzS5WR9SemvZAyN6FEkJs=
 		</data>
 		<key>flutter_assets/AssetManifest.bin</key>
 		<data>
-		WIqCBy8o6EcLt1Oy2yPkl1H32kw=
+		OjwlNrjxgYGjJ1Al29MrR3vC18I=
 		</data>
 		<key>flutter_assets/AssetManifest.json</key>
 		<data>
-		uB32VFFvxuksOVag3E467KHphcU=
+		C5nYwf80/EAFybc4xFIxy+pDk04=
 		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
@@ -22,23 +22,35 @@
 		</data>
 		<key>flutter_assets/NOTICES.Z</key>
 		<data>
-		hWIk6e3Kjy4TXrv4dHTw/Ch/Atw=
+		V5c06swclgF98Y6oBRygx1RXjuE=
 		</data>
 		<key>flutter_assets/fonts/MaterialIcons-Regular.otf</key>
 		<data>
 		/CUoTuPQqqdexfyOT9lpJhV+2MQ=
 		</data>
-		<key>flutter_assets/images/beyza.jpg</key>
-		<data>
-		MTQHCDvrlKsnkUk+x9M2riToXo4=
-		</data>
 		<key>flutter_assets/images/galata.png</key>
 		<data>
 		2XzNAugLQqiZ/iGYI99vk9fY6IQ=
 		</data>
+		<key>flutter_assets/images/homepageImage.png</key>
+		<data>
+		I4F/NGPHhIM6loPflXqiza/SNYQ=
+		</data>
 		<key>flutter_assets/images/icon.png</key>
 		<data>
 		TybPkeo3z68AM3fbEFOYrp3+LKg=
+		</data>
+		<key>flutter_assets/images/image1.png</key>
+		<data>
+		i1RNypwR9YGCDB1HJW8so7NQiGY=
+		</data>
+		<key>flutter_assets/images/image2.png</key>
+		<data>
+		9d13TIt1afMx9O7BmnXcBOsBixg=
+		</data>
+		<key>flutter_assets/images/img3.png</key>
+		<data>
+		7hdbhgt9mKrRK/VNGwRgoJlyrac=
 		</data>
 		<key>flutter_assets/images/insan.jpg</key>
 		<data>
@@ -47,6 +59,14 @@
 		<key>flutter_assets/images/kapadokya.webp</key>
 		<data>
 		iyop4ctp2bK80VTTXXXwVmdFXxQ=
+		</data>
+		<key>flutter_assets/images/log1.png</key>
+		<data>
+		GiSXKfTkwv2sHOwHGAn/wIAShZE=
+		</data>
+		<key>flutter_assets/images/log2.png</key>
+		<data>
+		wqIu9om+Eb5uM7SEyyg67aLewuM=
 		</data>
 		<key>flutter_assets/images/malatyaRamada.jpeg</key>
 		<data>
@@ -62,23 +82,23 @@
 		</data>
 		<key>flutter_assets/isolate_snapshot_data</key>
 		<data>
-		8vpBrNk/5P/p/7un/AheNJ7WLIo=
+		fdFQpcgByJaW0k6m3OVgyP7J+E0=
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		+LsBm5QEph7vV4sCpmOfNgqwB3o=
+		OchyL4YEazqRat4crOAdC1XQfPE=
 		</data>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
-		P7bb/oR3EhwqCIH1M6LyTuBIWYU=
+		Bvk+P1ykE1PGRdktwgwDyz6AOqM=
 		</data>
 		<key>flutter_assets/shaders/ink_sparkle.frag</key>
 		<data>
-		ZiX/DByz8A2xHGmziP9zxnaRW9M=
+		p79zzJ85/yOQo5OGiBW5XF0+CxY=
 		</data>
 		<key>flutter_assets/vm_snapshot_data</key>
 		<data>
-		cW0Pqsk2814YYWUEON+YgI6+YD0=
+		5pZuXudFN+/X6GBnZRBE8DbuhuQ=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -87,14 +107,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			gA93jH7Zhu7+lsRGnXduZS8mh6+JlJhhszjmxSo/GD4=
+			2JNQS4JQjLwHh2Zh/BvgVTRSfFf0Kb747+AQhanhDsc=
 			</data>
 		</dict>
 		<key>flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			5EzrT7m32xDMBKZo0FkSuFT9tGXtQ+metmtmtrezMSM=
+			QH+OE6ES8C4BpJeM6NLriXmxw80qEwztTuws8u5BFo4=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
@@ -108,7 +128,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			FFTOgAVaGjWURy4Lx9NOlmb6tUC4LRPOyM8dJwiLG+Y=
+			FNwLDtzIJ3dD3fYEDsg6RNgCTkzzMQW/LmsTH8NWir8=
 			</data>
 		</dict>
 		<key>flutter_assets/fonts/MaterialIcons-Regular.otf</key>
@@ -118,13 +138,6 @@
 			2YZbZxoJ1oPROoYwidiCXg9ho3aWzl19RIvIAjqmJFM=
 			</data>
 		</dict>
-		<key>flutter_assets/images/beyza.jpg</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			pMNrK8/X4G3vy8yysL6xYaDb+rRWIVny6hr/lEx7NEw=
-			</data>
-		</dict>
 		<key>flutter_assets/images/galata.png</key>
 		<dict>
 			<key>hash2</key>
@@ -132,11 +145,39 @@
 			2Fr3IoEZgRqH1bgdzrfygtcXI+geDLGIZMIMGREjauw=
 			</data>
 		</dict>
+		<key>flutter_assets/images/homepageImage.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			QIpf2NI3feOnH+bd6yqO3JHLT95g5ufulMr95ZwDK4g=
+			</data>
+		</dict>
 		<key>flutter_assets/images/icon.png</key>
 		<dict>
 			<key>hash2</key>
 			<data>
 			FDVTGdjGxzuHmcqMlZEXgnmdPcYH3FWyW7yASOkZV9k=
+			</data>
+		</dict>
+		<key>flutter_assets/images/image1.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			KL93cNRDfmjMeHXlzNx3j80d7N0rBO34DLs27rkH4mY=
+			</data>
+		</dict>
+		<key>flutter_assets/images/image2.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			1QNWmx1PPiu6+0jwszZq+VfbEtLXg0t7smNQKREbQoU=
+			</data>
+		</dict>
+		<key>flutter_assets/images/img3.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			3xZnG94L7976gFWOhWNAgvD53A1SR+N0Blhwiw6N3nA=
 			</data>
 		</dict>
 		<key>flutter_assets/images/insan.jpg</key>
@@ -151,6 +192,20 @@
 			<key>hash2</key>
 			<data>
 			wrG3sFpXrCMEHbxNgE89HGTN1DxJjV4/UzMRz4qgJXg=
+			</data>
+		</dict>
+		<key>flutter_assets/images/log1.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			qOkyyDvCImryMYOnFjCNIheS35Imf+xai/5RcI4CCrk=
+			</data>
+		</dict>
+		<key>flutter_assets/images/log2.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			mds0l5gzeL95KfX4w638f5saU0lUgKUyaN6Nb7JZaS0=
 			</data>
 		</dict>
 		<key>flutter_assets/images/malatyaRamada.jpeg</key>
@@ -178,35 +233,35 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			yuohnKVCTa8HGCvX0NZT5Bz0DfMH4eRHwl4vRVKRiVo=
+			BiA94rbQNL7/7Lo5iskjVWYBpj9AkPWrfxqcWaoEHGs=
 			</data>
 		</dict>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			aJwAbfzvoxKwFuYYHqxuguTKpU7UnpY2eHfml1GBRHU=
+			s8RjohooX/F6AD6eX/5tr66ChQcjpq18OcqjT3YRDwM=
 			</data>
 		</dict>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			x6NX+tjyECiQtyzbbjyY8U2zoZ7GDbJtE+T+k/dzgI0=
+			Z8RP6Rg7AC553ef2l34piGYcmj5KPF/OloeH79vtgjw=
 			</data>
 		</dict>
 		<key>flutter_assets/shaders/ink_sparkle.frag</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			49CVVGC0BQtpsarzJBllXjeVYst0OhUVq6Izlb7jGMQ=
+			ggsttSoN6c2kH04/7vNnFwBQTTy8j9ILVF4lU1822Bk=
 			</data>
 		</dict>
 		<key>flutter_assets/vm_snapshot_data</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			sev5a27JT/ZUSpHrGmWBmxjqtUgq1PyqOI5pHwvTLwg=
+			OKT7zSYjvmy6bkUt/xrnwXxv1rygk4kGDCZd1F+nKug=
 			</data>
 		</dict>
 	</dict>
