@@ -345,7 +345,7 @@ static Map<String, List<String>> cityPopularPlaceText = {
   ],
   'Eskişehir': [
     {'Sazova Park': 'Sazova Parkı, Eskişehir\'in en popüler parklarından biridir. Büyük bir gölet, çocuk oyun alanları, lunapark ve yürüyüş yollarıyla ziyaretçilere geniş bir alan sunar. Ziyaretçiler, parkta dinlenebilir ve eğlenceli aktiviteler yapabilirler.'},
-    {'Eskişehir Bilim, Sanat ve Kültür Parkı': 'Eskişehir Bilim, Sanat ve Kültür Parkı, şehrin önemli turistik alanlarından biridir. Bilim ve sanat etkinlikleri, sergi alanları ve açık hava etkinlikleriyle ziyaretçilere eğlenceli bir deneyim sunar.'},
+    {'Sanat ve Kültür Parkı': 'Eskişehir Bilim, Sanat ve Kültür Parkı, şehrin önemli turistik alanlarından biridir. Bilim ve sanat etkinlikleri, sergi alanları ve açık hava etkinlikleriyle ziyaretçilere eğlenceli bir deneyim sunar.'},
     {'Odunpazarı Evleri': 'Odunpazarı Evleri, Eskişehir\'in tarihî dokusunu yansıtan önemli bir alanıdır. Osmanlı döneminden kalma bu tarihî evler, renkli boyaları ve ahşap detaylarıyla ünlüdür. Ziyaretçiler, evleri ziyaret ederek şehrin tarihini ve mimarisini keşfedebilirler.'},
     {'Kent Park': 'Kent Park, Eskişehir\'in merkezinde yer alan büyük bir parktır. Yeşil alanları, göleti, çocuk oyun alanları ve spor alanlarıyla ziyaretçilere çeşitli aktiviteler sunar. Ziyaretçiler, parkta piknik yapabilir ve doğayla iç içe vakit geçirebilirler.'}
   ],
@@ -544,12 +544,13 @@ static Map<String, List<String>> cityPopularPlaceText = {
   // Diğer şehirler ve turistik yerler buraya eklenecek
 };
 
-
- static Map<String,List> favoritePageList = {
+//favoriye alınan yerlerin listesi
+ static Map<String,dynamic> favoritePageList = {
   //"Yer Adi" : ["Yer Adi","Şehir","Url"]
  };
 
- static Map<String,List> PlannedFlyList = {
+//favoriye alınan uçuşların listesi
+ static Map<String,dynamic> PlannedFlyList = {
   //"randomNumara" : ["kalkis","varis","kalkisSaati","fiyat","tarih","havayoluSirketi","aktarmaVarmi,"varisSaati"]
  };
 

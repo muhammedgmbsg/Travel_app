@@ -9,6 +9,7 @@ import 'package:travel_app/FvFly.dart';
 import 'package:travel_app/FvPlace.dart';
 import 'package:travel_app/Provider.dart';
 import 'package:travel_app/login_page.dart';
+import 'package:travel_app/personProvider.dart';
 
 
 
@@ -58,10 +59,12 @@ class _HomePageState extends State<HomePage> {
       builder: (_ , child) {
         return 
       Scaffold(
+        
           drawer: Drawer( child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            const DrawerHeader(
+            
+             DrawerHeader(
               decoration: BoxDecoration(
                 color: Colors.blue,
               ),
@@ -76,13 +79,21 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   SizedBox(height: 10),
-                  Text(
-                    'scream.muhammed@gmail.com',
+
+                  Text(ref.watch(now_userMailProvider),
                     style: TextStyle(
                       color: Color.fromARGB(255, 233, 228, 228),
                       fontSize: 15,
                     ),
                   ),
+                   SizedBox(height: 5),
+                  Text(ref.watch(now_userNameProvider),
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 233, 228, 228),
+                      fontSize: 14,
+                    ),
+                  ),
+                  
                 ],
               ),
             ),
@@ -111,13 +122,20 @@ class _HomePageState extends State<HomePage> {
               title: const Text('Çıkış Yap'),
               onTap: () {
                 // Drawer öğesine tıklandığında yapılacak işlemler
-                Navigator.push(context, MaterialPageRoute(builder:(context) =>  const LoginPage(),)); // Drawer'ı kapatır
+
+                Navigator.push(context, MaterialPageRoute(builder:(context) =>   LoginPage(),)); // Drawer'ı kapatır
+                ref.read(now_userMailProvider.notifier).state = "";
+                ref.read(now_userMailProvider.notifier).state="";
+                Data.PlannedFlyList.clear();
+                Data.favoritePageList.clear();
                 // Hakkında sayfasına gitmek için gerekli navigasyon işlemleri buraya eklenir
               },
             ),
           ],
         ),),
-        appBar: AppBar(backgroundColor: Colors.blue, title: Text("Seyahat Uygulaması",style: TextStyle(color: Colors.white,fontSize: 16.h),),),
+        appBar: AppBar(  iconTheme: IconThemeData(
+          color: Colors.white, // Drawer ikon rengini burada belirleyin
+        ),backgroundColor: Colors.blue, title: Text("Seyahat Uygulaması",style: TextStyle(color: Colors.white,fontSize: 16.h),),),
         backgroundColor: const Color.fromARGB(255, 255, 253, 253),
         body: Container(
           child: Column(children: [
@@ -133,10 +151,10 @@ class _HomePageState extends State<HomePage> {
                     width: 270,
                     child:
                   
-                   Text("Hoşgeldin",style: TextStyle(fontSize: 15,fontWeight: FontWeight.w400),)),SizedBox(height: 10.h,),const SizedBox(
+                   Text("Hoşgeldin",style: TextStyle(fontSize: 15,fontWeight: FontWeight.w400),)),SizedBox(height: 10.h,),SizedBox(
                    
                    width: 270,
-                    child: Text('Muhammed Gümüşboğa',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500,color: Colors.blue),)),
+                    child: Text('${ref.watch(now_userNameProvider)}',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500,color: Colors.blue),)),
                   
                     
                 ],
@@ -151,26 +169,18 @@ class _HomePageState extends State<HomePage> {
                   child: Container(
                   
                     decoration: BoxDecoration(
-                      border: Border.all(color: const Color.fromARGB(255, 76, 75, 75)),
+                      border: Border.all(color: Color.fromARGB(255, 73, 72, 72)),
                       shape: BoxShape.circle,
                       boxShadow: [
                         BoxShadow(
-                          color: const Color.fromARGB(255, 41, 41, 41).withOpacity(0.3),
+                          color: Color.fromARGB(255, 5, 85, 204).withOpacity(0.3),
                               spreadRadius: 2,
                               blurRadius: 2,
                               offset: const Offset(0, 1),
                         )
                       ]
                     ),
-                    child: ClipOval(
-                      
-                            child: Image.asset(
-                              'images/muhammed.jpg',
-                              width: 60,
-                              height: 60,
-                              fit:BoxFit.cover
-                            ),
-                          ),
+                    child: Icon(Icons.person,size: 50,color: Colors.blue,)
                   ),
                 ),
                 ),
@@ -451,7 +461,7 @@ class _HomePageState extends State<HomePage> {
   }
 
 
-} String selectedTransportation = 'Otobüs';
+} String selectedTransportation = 'Uçak';
 //Show Dialog
   Future<void> _showTravelPlanDialog(BuildContext context) async {
    
@@ -465,29 +475,8 @@ class _HomePageState extends State<HomePage> {
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              ListTile(
-                title: const Text('Otobüs'),
-                leading: Radio(
-                  activeColor: Colors.blue,
-                  value: 'Otobüs',
-                  groupValue: selectedTransportation,
-                  onChanged: (value) {
-                    _updateSelectedTransportation(value!, context);
-                  },
-                ),
-              ),
-              ListTile(
-                title: const Text('Uçak'),
-                leading: Radio(
-                  value: 'Uçak',
-                  groupValue: selectedTransportation,
-                  activeColor: Colors.blue,
-                  onChanged: (value) {
-                    _updateSelectedTransportation(value!, context);
-                  },
-                ),
-              ),
-              SizedBox(height: 20.h),
+
+            SizedBox(height: 20.h),
               Padding(
                 padding: const EdgeInsets.only(right: 10),
                 child: Row(
@@ -504,14 +493,33 @@ class _HomePageState extends State<HomePage> {
                   ),
                   onPressed: () async {
                     DateTime? pickedDate = await showDatePicker(
+                      
                       context: context,
                       initialDate: selectedDate,
+                      
                       firstDate: DateTime.now(),
                       lastDate: DateTime(2101),
+                      builder: (BuildContext context, Widget? child) {
+        return Theme(
+          data: ThemeData.light().copyWith(
+            colorScheme: ColorScheme.light(
+              primary: Colors.blue, // Header background color
+              onPrimary: Colors.white, // Header text color
+              onSurface: Colors.blueAccent, // Body text color
+            ),
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.blue, // Button text color
+              ),
+            ),
+          ),
+          child: child!,
+        );
+      }, 
                     );
                 
                     if (pickedDate != null && pickedDate != selectedDate) {
-
+                      
                       selectedDate = pickedDate;
                       //${ref.watch(selectedDateTime)}
                       ref.read(selectedDateTime.notifier).state = selectedDate.toString().substring(0,10);

@@ -21,18 +21,4 @@ final rpasswordProvider = StateProvider<String>((ref) {
   return "";
 });
 
-final userKey = Provider<GlobalKey<FormState>>((ref) {
-  return GlobalKey<FormState>();
-});
 
-final mailKey = Provider<GlobalKey<FormState>>((ref) {
-  return GlobalKey<FormState>();
-});
-
-final pwKey = Provider<GlobalKey<FormState>>((ref) {
-  return GlobalKey<FormState>();
-});
-
-final rpwKey = Provider<GlobalKey<FormState>>((ref) {
-  return GlobalKey<FormState>();
-});

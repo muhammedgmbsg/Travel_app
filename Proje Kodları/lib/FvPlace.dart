@@ -64,6 +64,10 @@ class FavoriteList extends StatelessWidget {
           return Column(
             children: [
               SizedBox(height: 10.0),
+               index == 1 ? SizedBox() : Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 30.w,vertical: 20.h),
+                  child: Container(color: Color.fromARGB(255, 194, 193, 193),height: 1,),
+                ),
               Padding(
                 padding: EdgeInsets.only(left: 23.w),
                 child: Container(

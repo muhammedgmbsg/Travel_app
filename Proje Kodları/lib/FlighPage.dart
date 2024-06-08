@@ -6,7 +6,13 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:travel_app/Data.dart';
+import 'package:travel_app/Db.dart';
 import 'package:travel_app/Provider.dart';
+import 'package:travel_app/personProvider.dart';
+
+final controlProgress = StateProvider<bool>((ref) {
+  return false;
+});
 
 
 class FlightOffersScreen extends StatefulWidget {
@@ -235,6 +241,14 @@ Map<String, List<String>> airportCodes = {
                                 borderRadius: BorderRadius.circular(18.0),
                                 
                               ),
+                                                      focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(18.0),
+      borderSide: const BorderSide(color: Colors.blue), // Normal duruma mavi border
+    ),
+                               enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(18.0),
+      borderSide: const BorderSide(color: Colors.black), 
+    ),
                             ),
                                     items: airportCodes.keys.map<DropdownMenuItem<String>>((String value) {
                                       return DropdownMenuItem<String>(
@@ -261,8 +275,13 @@ Map<String, List<String>> airportCodes = {
                             contentPadding: const EdgeInsets.all(12.0),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(18.0),
-                            ),
-                          ),
+                            ), enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(18.0),
+      borderSide: const BorderSide(color: Colors.black), // Normal duruma mavi border
+    ),  focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(18.0),
+      borderSide: const BorderSide(color: Colors.blue), 
+                          ),),
                                   items: airportCodes.keys.map<DropdownMenuItem<String>>((String value) {
                                     return DropdownMenuItem<String>(
                       value: value,
@@ -344,7 +363,7 @@ SizedBox(height: 10.h,)
 
                  
 
-               _showConfirmationDialog(context,flightOffers[index].originLocationCode,flightOffers[index].destinationLocationCode ,flightOffers[index].departureTime,'${(totalPrice)} Euro ',ref.watch(selectedDateTime),airlineName,flightOffers[index].secondLayoverArrival != null ? true : false,flightOffers[index].arrivalTime.substring(11));
+               _showConfirmationDialog(context,ref,flightOffers[index].originLocationCode,flightOffers[index].destinationLocationCode ,flightOffers[index].departureTime,'${(totalPrice)} Euro ',ref.watch(selectedDateTime),airlineName,flightOffers[index].secondLayoverArrival != null ? true : false,flightOffers[index].arrivalTime.substring(11));
 
               
                
@@ -472,40 +491,114 @@ SizedBox(height: 10.h,)
         ],
       ));});}
 
-       void _showConfirmationDialog(BuildContext context, String kalkis, String varis, String kalkisSaati,String fiyat,String tarih,String havayoluSirketi, bool aktarmaVarmi,String varisSaati) {
+       void _showConfirmationDialog(BuildContext context, WidgetRef ref, kalkis, String varis, String kalkisSaati,String fiyat,String tarih,String havayoluSirketi, bool aktarmaVarmi,String varisSaati) {
+    
+    
     showDialog(
       context: context,
-      builder: (BuildContext context) {
+      builder: (context) {
+        return StatefulBuilder(builder: (context,setState){
         return AlertDialog(
           title: const Text('Favoriye Ekle'),
           content: const Text('Uçuş planlarına eklemek istiyor musunuz?'),
           actions: <Widget>[
-            TextButton(
+           Row(mainAxisAlignment: MainAxisAlignment.end,
+           children: [
+            Padding(
+                    padding:  EdgeInsets.only(left: 5.w),
+                    child: ref.watch(controlProgress) == true ? CircularProgressIndicator(
+                      color: Colors.blue,
+                    ) : SizedBox(),
+                  ) ,
+                  Spacer(),
+             TextButton(
               onPressed: () {
                 Navigator.of(context).pop(); // Dialog'u kapat
               },
               child: const Text('Kapat',style: TextStyle(color: Colors.blue),),
             ),
             TextButton(
-              onPressed: () {
-                _addPlace(kalkis, [kalkis, varis, kalkisSaati,fiyat,tarih,havayoluSirketi,aktarmaVarmi,varisSaati]);
-                debugPrint("eklendi");
+              onPressed: () async {
+             //   
+              //  debugPrint("eklendi");
+              try{
+ 
+            ref.read(controlProgress.notifier).state = true;
+
+             setState(() {
+                  
+                });
+                                   
+
+                if(!Data.PlannedFlyList.containsKey(tarih)){
+                
+               _addPlace(tarih, [kalkis, varis, kalkisSaati,fiyat,tarih,havayoluSirketi,aktarmaVarmi,varisSaati]);
+               await DataBase.InsertfavoritePlace(ref.watch(now_userMailProvider),Data.PlannedFlyList,"fvFly");
+             
+
+                }
+                else{
+                  debugPrint("Zaten ekli");
+                 Navigator.of(context).pop();
+                 
+                _showConfirmationDialog2(context);
+                    
+              
+                  
+                }
+                   ref.read(controlProgress.notifier).state = false;
+                  
+                   setState(() {
+                  
+                });
+               }
+               catch (expection){
+                debugPrint(expection.toString() );
+                  ref.read(controlProgress.notifier).state = false;
+                  setState(() {
+                  
+                });
+               }
                 
                 Navigator.of(context).pop(); // Dialog'u kapat
               },
               child: const Text('Ekle',style: TextStyle(color: Colors.blue),),
             ),
+           ],)
           ],
         );
       },
     );
-  }
+       });}
 void _addPlace(String key, List value) {
     
       Data.PlannedFlyList[key] = value;
     
   }
-
+ void _showConfirmationDialog2(BuildContext context) {
+        
+    showDialog(
+  
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          
+          title: const Text('Aynı gün için sadece bir uçuş eklenebilir'),
+          
+          actions: <Widget>[
+            
+            TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Dialog'u kapat
+                  },
+                  child: const Text('Kapat',style: TextStyle(color: Colors.blue),),
+                ),
+           
+          ],
+        );
+      },
+    );
+  }
   }
 
   class FlightOffer {

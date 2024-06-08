@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/Data.dart';
+import 'package:travel_app/Db.dart';
 import 'package:travel_app/Provider.dart';
+import 'package:travel_app/personProvider.dart';
 // Adjust path based on your actual file location
 
+final prgresBarrDetailControl = StateProvider<bool>((ref) {
+  return false;
+});
 
 class DetailPage extends ConsumerWidget {
 //String name="Galata Kulesi ya da müze olarak kullanılmaya başlaması sonrasındaki adıyla Galata Kulesi Müzesi, İstanbul'un Beyoğlu ilçesinde bulunan bir kuledir. Adını, bulunduğu Galata semtinden alır.";
@@ -138,27 +143,82 @@ String imgUrl = images;
        void _showConfirmationDialog(BuildContext context, WidgetRef ref, String placeName, String city, String imgUrl) {
     showDialog(
       context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
+      builder: (context) {
+        return StatefulBuilder(builder: (context,setState){
+
+return AlertDialog(
           title: const Text('Favoriye Ekle'),
           content: const Text('Bu yeri favorilere eklemek istiyor musunuz?'),
-          actions: <Widget>[
-            TextButton(
+          actions: <Widget> [
+Row(  mainAxisAlignment: MainAxisAlignment.end,    children: [
+   Padding(
+                    padding:  EdgeInsets.only(left: 5.w),
+                    child: ref.watch(prgresBarrDetailControl) == true ? CircularProgressIndicator(
+                      color: Colors.blue,
+                    ) : SizedBox(),
+                  ) ,
+                  Spacer(),
+  TextButton(
               onPressed: () {
                 Navigator.of(context).pop(); // Dialog'u kapat
+               
               },
               child: const Text('Kapat',style: TextStyle(color: Colors.blue),),
             ),
             TextButton(
-              onPressed: () {
-                _addPlace(placeName, [placeName, city, imgUrl]);
+              onPressed: () async {
+               
+               try{
+ 
+            ref.read(prgresBarrDetailControl.notifier).state = true;
+
+             setState(() {
+                  
+                });
+                                   debugPrint("baslangıc");
+                                   debugPrint(ref.watch(prgresBarrDetailControl).toString());
+
+                if(!Data.favoritePageList.containsKey(placeName)){
+                
+               _addPlace(placeName, [placeName, city, imgUrl]);
+               await DataBase.InsertfavoritePlace(ref.watch(now_userMailProvider),Data.favoritePageList,"fvPlace");
+             
+
+                }
+                else{
+                  debugPrint("Zaten ekli");
+                  
+                  
+                }
+                   ref.read(prgresBarrDetailControl.notifier).state = false;
+                   debugPrint("bitis");
+                   setState(() {
+                  
+                });
+               }
+               catch (expection){
+                debugPrint(expection.toString() );
+                  ref.read(prgresBarrDetailControl.notifier).state = false;
+                  setState(() {
+                  
+                });
+               }
+                                
+
                 debugPrint("Resim url: " + imgUrl);
                 Navigator.of(context).pop(); // Dialog'u kapat
+                
               },
               child: const Text('Ekle',style: TextStyle(color: Colors.blue),),
             ),
+],),
+                 
+            
+            
           ],
         );
+        });
+        
       },
     );
   }

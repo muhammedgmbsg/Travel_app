@@ -58,35 +58,46 @@ class FavoriteList extends StatelessWidget {
           return Column(
             children: [
               SizedBox(height: 10.0),
+           
+                index == 1 ? SizedBox() : Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 30.w,vertical: 20.h),
+                  child: Container(color: Color.fromARGB(255, 194, 193, 193),height: 1,),
+                ),
               Padding(
                 padding: EdgeInsets.only(left: 23.w),
                 child: Container(
                   alignment: Alignment.centerLeft,
-                  child: Container(
-                    alignment: Alignment.center,
-                    width: 25.w,
-                    height: 25.h,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Color.fromARGB(225, 33, 149, 243),
-                      boxShadow: [
-                        BoxShadow(
-                          color: const Color.fromARGB(255, 41, 41, 41)
-                              .withOpacity(0.1),
-                          spreadRadius: 4,
-                          blurRadius: 4,
-                          offset: const Offset(0, 1),
+                  child: Row(
+                    children: [
+                      Container(
+                        alignment: Alignment.center,
+                        width: 25.w,
+                        height: 25.h,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Color.fromARGB(225, 33, 149, 243),
+                          boxShadow: [
+                            BoxShadow(
+                              color: const Color.fromARGB(255, 41, 41, 41)
+                                  .withOpacity(0.1),
+                              spreadRadius: 4,
+                              blurRadius: 4,
+                              offset: const Offset(0, 1),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                    child: Text(
-                      index.toString(),
-                      style: TextStyle(
-                        fontSize: 10.h,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white,
+                        child: Text(
+                          index.toString(),
+                          style: TextStyle(
+                            fontSize: 10.h,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
-                    ),
+                      SizedBox(width: 10.w,),
+                      Text(value[2].toString().substring(0,10),style: TextStyle(color: Color.fromARGB(255, 94, 92, 92),fontWeight: FontWeight.w400),)
+                    ],
                   ),
                 ),
               ),
@@ -97,7 +108,7 @@ class FavoriteList extends StatelessWidget {
                                  
                                   height: 130,
                                   
-                                  decoration: BoxDecoration(color: const Color.fromARGB(255, 225, 220, 218),borderRadius: BorderRadius.circular(17),
+                                  decoration: BoxDecoration(color: Color.fromARGB(255, 235, 236, 237),borderRadius: BorderRadius.circular(17),
                                   boxShadow: [
                                                       BoxShadow(
                                                         color: const Color.fromARGB(255, 41, 41, 41).withOpacity(0.3),
@@ -165,7 +176,7 @@ class FavoriteList extends StatelessWidget {
                                             mainAxisAlignment: MainAxisAlignment.center,
                                             children: [
                                 
-                                           Column(children: [ Text(value[1]),Text(value[2].toString().substring(11),style: TextStyle(fontSize: 11.sp),),           
+                                           Column(children: [ Text(value[0]),Text(value[2].toString().substring(11),style: TextStyle(fontSize: 11.sp),),           
                                                          ],)
                                 
                                             
